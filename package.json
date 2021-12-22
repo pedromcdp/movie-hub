@@ -5,7 +5,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "npx eslint *.js --fix"
+    "lint": "npx eslint *.js --fix",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "test": "jest --config ./jest.config.js --passWithNoTests --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
+      
   },
   "dependencies": {
     "next": "12.0.7",
@@ -16,6 +19,9 @@
     "@arkweid/lefthook": "^0.7.7",
     "eslint": "^8.5.0",
     "eslint-config-next": "12.0.7",
-    "eslint-plugin-react": "^7.27.1"
+    "eslint-plugin-react": "^7.27.1",
+    "jest": "^27.4.5",
+    "jest-junit": "^13.0.0",
+    "prettier": "2.5.1"
   }
 }
