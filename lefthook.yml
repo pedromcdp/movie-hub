@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  commands:
+    linter:
+      files: git diff --name-only @{push}
+      glob: "*.{js,ts,jsx,tsx}"
+      run: npm run lint
+    tests:
+      files: git diff --name-only @{push}
+      glob: "*.{js,ts, jsx, tsx}"
+      run: npm run test
+    prettier:
+      files: git diff --name-only @{push}
+      glob: "*.{js,ts, jsx, tsx}"
+      run: npm run prettier
