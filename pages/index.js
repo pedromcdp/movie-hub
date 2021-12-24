@@ -24,7 +24,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", onKeyDown)
     }
-  }, [])
+  })
 
   return (
     <div className="bg-slate-800">
@@ -37,10 +37,34 @@ export default function Home() {
         {searchBar && <Search setSearchBarState={setSearchBarState} />}
         <Nav setSearchBarState={setSearchBarState} />
         <Jumbotron />
-        <Row rowTitle="Nos cinemas" request={useGetMovieQuery("now_playing")} />
-        <Row rowTitle="Tendências" request={useGetMovieQuery("popular")} />
-        <Row rowTitle="Brevemente" request={useGetMovieQuery("upcoming")} />
-        <Row rowTitle="Mais Votados" request={useGetMovieQuery("top_rated")} />
+        <Row
+          rowTitle="Nos cinemas"
+          request={useGetMovieQuery({
+            content_type: "movie",
+            query: "now_playing",
+          })}
+        />
+        <Row
+          rowTitle="Tendências"
+          request={useGetMovieQuery({
+            content_type: "movie",
+            query: "popular",
+          })}
+        />
+        <Row
+          rowTitle="Brevemente"
+          request={useGetMovieQuery({
+            content_type: "movie",
+            query: "upcoming",
+          })}
+        />
+        <Row
+          rowTitle="Mais Votados"
+          request={useGetMovieQuery({
+            content_type: "movie",
+            query: "top_rated",
+          })}
+        />
         <Row
           rowTitle="Filmes em Destaque"
           request={useGetTrendingTitlesQuery({

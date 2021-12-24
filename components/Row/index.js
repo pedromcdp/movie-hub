@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import Lottie from "react-lottie"
 import animationData from "../../animations/jumbotronLoader.json"
+import Link from "next/link"
 
 function Row({ rowTitle, request }) {
   const { data, isFetching } = request
@@ -32,13 +34,19 @@ function Row({ rowTitle, request }) {
       </div>
       <div className="flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 py-8 pl-6">
         {data?.results.map(movie => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Link
             key={movie.id}
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={`${movie.title || movie.name} capa`}
-            className="h-52 object-cover drop-shadow-lg transition ease-in-out hover:scale-125 duration-200 cursor-pointer"
-          />
+            href={`/${
+              request?.originalArgs.content_type || request?.originalArgs.type
+            }/${movie.id}`}
+            passHref
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={`${movie.title || movie.name} capa`}
+              className="h-52 object-cover drop-shadow-lg transition ease-in-out hover:scale-125 duration-200 cursor-pointer"
+            />
+          </Link>
         ))}
         <div className="pl-10"></div>
       </div>

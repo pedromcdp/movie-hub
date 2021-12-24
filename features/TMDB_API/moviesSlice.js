@@ -11,8 +11,8 @@ export const moviesApi = createApi({
         `trending/${type}/${time_window}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=${page}`,
     }),
     getMovie: builder.query({
-      query: query =>
-        `movie/${query}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=1`,
+      query: ({ content_type, query }) =>
+        `${content_type}/${query}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=1`,
     }),
     getSearchTerm: builder.query({
       query: ({ categorie, searchTerm }) =>
