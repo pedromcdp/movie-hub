@@ -5,8 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        slate: {
+          850: "#161F2C",
+        },
+      },
       backgroundImage: {
-        "jumbo-overlay": "url('/images/overlay.svg')",
+        "jumbo-overlay": "url('/images/overlay.png')",
       },
       fontFamily: {
         sans: ["Calibre", "sans-serif"],
