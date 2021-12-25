@@ -2,6 +2,9 @@
 import Lottie from "react-lottie"
 import animationData from "../../animations/jumbotronLoader.json"
 import Link from "next/link"
+import RowHeader from "./RowHeader"
+import NavButtons from "./NavButtons"
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 
 function Row({ rowTitle, request }) {
   const { data, isFetching } = request
@@ -27,12 +30,12 @@ function Row({ rowTitle, request }) {
   }
 
   return (
-    <div className="flex-col pl-6 md:pl-14 pt-8 text-white">
-      <div className="flex justify-between items-center pr-6 md:pr-14">
-        <h1 className="text-3xl">{rowTitle}</h1>
-        <button>ver mais</button>
-      </div>
-      <div className="flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 py-8 pl-6">
+    <div className="flex-col pl-6 md:pl-14 pt-8 text-white w-screen">
+      <RowHeader rowTitle={rowTitle} />
+      <div className="static w-full flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 py-8 pl-6">
+        <FiChevronLeft className="absolute self-center left-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+        <FiChevronRight className="absolute self-center right-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+
         {data?.results.map(movie => (
           <Link
             key={movie.id}

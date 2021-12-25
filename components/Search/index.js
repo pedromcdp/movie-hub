@@ -1,27 +1,21 @@
 import React, { useEffect, useRef } from "react"
 import { RiSearch2Line } from "react-icons/ri"
 import { useClickOutside } from "@mantine/hooks"
+import { useDispatch } from "react-redux"
+import { setState } from "../../features/search"
 
 function Search({ setSearchBarState }) {
+  const dispatch = useDispatch()
   const searchInput = useRef(null)
+
   const ref = useClickOutside(
-    () => setSearchBarState(false),
+    () => dispatch(setState(false)),
     ["mouseup", "touchend"]
   )
-  const onKeyDown = e => {
-    if (e.key === "Escape") {
-      setSearchBarState(false)
-    }
-  }
 
   useEffect(() => {
     searchInput.current.focus()
-    document.addEventListener("keydown", onKeyDown)
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown)
-    }
-  }, [])
+  })
 
   return (
     <div className="fixed w-screen h-screen bg-black bg-opacity-40 z-40 ">

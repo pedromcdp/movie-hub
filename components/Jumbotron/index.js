@@ -2,8 +2,9 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Lottie from "react-lottie"
 import animationData from "../../animations/jumbotronLoader.json"
-import { useGetTrendingTitlesQuery } from "../../features/TMDB_API/moviesSlice"
+import { useGetTrendingTitlesQuery } from "../../services/tmdb"
 import Link from "next/link"
+import Overlay from "../Overlay"
 
 function Jumbotron() {
   const {
@@ -44,7 +45,7 @@ function Jumbotron() {
   }
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen relative">
       <Image
         src={`https://image.tmdb.org/t/p/original/${movieData?.results[currentIndex].backdrop_path}`}
         alt={`${
@@ -53,9 +54,11 @@ function Jumbotron() {
         } imagem de capa`}
         layout="fill"
         objectFit="cover"
+        objectPosition="center"
       />
-      <div className="w-full h-full absolute bg-jumbo-overlay bg-cover bg-no-repeat bg-fixed bg-center px-6 md:px-14 text-white tracking-wide">
-        <div className="flex flex-col h-full justify-end pb-32">
+      <Overlay>
+        {/* <div className="w-full h-full absolute bg-jumbo-overlay bg-cover bg-no-repeat md:bg-fixed bg-center px-6 md:px-14 text-white tracking-wide"> */}
+        <div className="flex flex-col h-full justify-end pb-20 md:pb-32 px-6 md:px-14 text-white tracking-wide">
           <h1 className="text-5xl font-medium">
             {movieData?.results[currentIndex].title ||
               movieData?.results[currentIndex].name}
@@ -82,11 +85,9 @@ function Jumbotron() {
             </button>
           </Link>
         </div>
-      </div>
+      </Overlay>
     </div>
   )
 }
 
 export default Jumbotron
-
-//as={`/${movieData?.results[currentIndex].media_type}/${movieData?.results[currentIndex].id}`}

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-export const moviesApi = createApi({
-  reducerPath: "moviesApi",
+export const TMDB_API = createApi({
+  reducerPath: "TMDB_API",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.themoviedb.org/3/",
   }),
@@ -25,4 +25,4 @@ export const {
   useGetTrendingTitlesQuery,
   useGetMovieQuery,
   useGetSearchTermQuery,
-} = moviesApi
+} = TMDB_API
