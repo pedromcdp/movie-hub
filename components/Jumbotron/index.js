@@ -27,13 +27,17 @@ function Jumbotron() {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      if (currentIndex === 19) {
-        setCurrentIndex(0)
-      } else {
-        setCurrentIndex(currentIndex + 1)
-      }
-    }, 10000)
+    let isSubscribed = true
+    if (isSubscribed) {
+      setTimeout(() => {
+        if (currentIndex === 19) {
+          setCurrentIndex(0)
+        } else {
+          setCurrentIndex(currentIndex + 1)
+        }
+      }, 10000)
+    }
+    return () => (isSubscribed = false)
   }, [currentIndex])
 
   if (isLoading || isFetching) {

@@ -3,7 +3,7 @@ import Left from "./left"
 import Center from "./center"
 import Right from "./right"
 
-function Index() {
+function NavBar() {
   const [showBarBg, setShowBarBg] = useState(false)
 
   const trasitionBar = () => {
@@ -35,4 +35,4 @@ function Index() {
   )
 }
 
-export default Index
+export default NavBar

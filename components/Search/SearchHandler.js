@@ -14,7 +14,6 @@ export function SearchHandler({ children }) {
       dispatch(setState(false))
     }
   }
-  console.log(showSearch)
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown)
