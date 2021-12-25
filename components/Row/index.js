@@ -3,7 +3,6 @@ import Lottie from "react-lottie"
 import animationData from "../../animations/jumbotronLoader.json"
 import Link from "next/link"
 import RowHeader from "./RowHeader"
-import NavButtons from "./NavButtons"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 
 function Row({ rowTitle, request }) {
