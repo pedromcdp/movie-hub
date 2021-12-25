@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
+import NavBar from "../../components/NavBar"
 import Jumbotron from "../../components/Detail/Jumbotron"
 import Overlay from "../../components/Overlay"
 import Poster from "../../components/Detail/Jumbo_Poster"
@@ -43,6 +44,7 @@ function Detail() {
         <title>{`Movie HUB | ${data?.title || data?.name}`}</title>
       </Head>
       <main>
+        <NavBar />
         <Jumbotron imgSource={data.backdrop_path}>
           <Overlay>
             <OverviewContainer>

@@ -1,4 +1,5 @@
 import Head from "next/head"
+import NavBar from "../components/NavBar"
 import Jumbotron from "../components/Jumbotron"
 import Row from "../components/Row"
 import { useGetTrendingTitlesQuery, useGetMovieQuery } from "../services/tmdb"
@@ -12,6 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-black bg-opacity-25">
+        <NavBar />
         <Jumbotron />
         <Row
           rowTitle="Nos cinemas"
