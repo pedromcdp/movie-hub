@@ -7,6 +7,7 @@ import Link from "next/link"
 import Overlay from "../Overlay"
 
 function Jumbotron() {
+  const [hideMouse, setHideMouse] = useState(false)
   const {
     data: movieData,
     isLoading,
@@ -26,9 +27,25 @@ function Jumbotron() {
     },
   }
 
+  const trasitionMouse = () => {
+    if (window.scrollY > 100) {
+      setHideMouse(true)
+    } else {
+      setHideMouse(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", trasitionMouse)
+    return () => {
+      window.removeEventListener("scroll", trasitionMouse)
+    }
+  }, [])
+
   useEffect(() => {
     let isSubscribed = true
     if (isSubscribed) {
+      window.addEventListener("scroll", trasitionMouse)
       setTimeout(() => {
         if (currentIndex === 19) {
           setCurrentIndex(0)
@@ -37,7 +54,10 @@ function Jumbotron() {
         }
       }, 10000)
     }
-    return () => (isSubscribed = false)
+    return () => {
+      isSubscribed = false
+      window.removeEventListener("scroll", trasitionMouse)
+    }
   }, [currentIndex])
 
   if (isLoading || isFetching) {
@@ -49,7 +69,7 @@ function Jumbotron() {
   }
 
   return (
-    <div className="w-screen h-screen relative">
+    <div className="w-screen h-screen relative min-h-[680px]">
       <Image
         src={`https://image.tmdb.org/t/p/original/${movieData?.results[currentIndex].backdrop_path}`}
         alt={`${
@@ -59,10 +79,10 @@ function Jumbotron() {
         layout="fill"
         objectFit="cover"
         objectPosition="center"
+        priority
       />
       <Overlay>
-        {/* <div className="w-full h-full absolute bg-jumbo-overlay bg-cover bg-no-repeat md:bg-fixed bg-center px-6 md:px-14 text-white tracking-wide"> */}
-        <div className="flex flex-col h-full justify-end pb-20 md:pb-32 px-6 md:px-14 text-white tracking-wide">
+        <div className="flex flex-col h-full justify-end pb-20 md:pb-10 px-6 md:px-14 text-white tracking-wide">
           <h1 className="text-5xl font-medium">
             {movieData?.results[currentIndex].title ||
               movieData?.results[currentIndex].name}
@@ -88,6 +108,14 @@ function Jumbotron() {
               Mais Informação
             </button>
           </Link>
+          <div
+            className={
+              "hidden md:block border-2 border-white self-center w-5 h-8 rounded-xl animate-bounce mt-12 transition duration-500 ease-in-out " +
+              (hideMouse && "opacity-0 ")
+            }
+          >
+            <div className="absolute bg-white left-1.5 rounded-full top-1.5 right-1.5 w-1 h-1"></div>
+          </div>
         </div>
       </Overlay>
     </div>

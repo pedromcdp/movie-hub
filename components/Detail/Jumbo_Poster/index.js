@@ -8,6 +8,7 @@ function Poster({ imgSource }) {
         alt="poster"
         layout="fill"
         objectFit="contain"
+        loading="lazy"
       />
     </div>
   )

@@ -22,16 +22,16 @@ function NavBar() {
   }, [])
 
   return (
-    <nav
+    <header
       className={
-        "fixed top-0 w-screen transition duration-500 ease-in-out flex p-6 items-baseline  justify-center text-white z-10 " +
+        "fixed top-0 w-screen transition duration-500 ease-in-out flex p-6 items-baseline  justify-center text-white z-20 " +
         (showBarBg && "bg-black bg-opacity-80 ")
       }
     >
       <Left />
       <Center />
       <Right />
-    </nav>
+    </header>
   )
 }
 
