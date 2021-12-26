@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useRef, useState } from "react"
 import Lottie from "react-lottie"
 import animationData from "../../animations/jumbotronLoader.json"
 import Link from "next/link"
@@ -6,6 +7,9 @@ import RowHeader from "./RowHeader"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 
 function Row({ rowTitle, request }) {
+  const scrollRef = useRef(null)
+  const [showLeft, setShowLeft] = useState(false)
+  const [showRight, setShowRight] = useState(true)
   const { data, isFetching } = request
   const defaultOptions = {
     loop: true,
@@ -14,6 +18,22 @@ function Row({ rowTitle, request }) {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
+  }
+
+  const onScroll = () => {
+    if (scrollRef.current.scrollLeft > 0) {
+      setShowLeft(true)
+    } else {
+      setShowLeft(false)
+    }
+    if (
+      scrollRef.current.scrollLeft ===
+      scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+    ) {
+      setShowRight(false)
+    } else {
+      setShowRight(true)
+    }
   }
 
   if (isFetching) {
@@ -29,12 +49,31 @@ function Row({ rowTitle, request }) {
   }
 
   return (
-    <div className="flex-col pl-6 md:pl-14 pt-8 text-white w-screen">
+    <section className="flex-col pl-6 md:pl-14 pt-6 md:pt-8 text-white w-screen">
       <RowHeader rowTitle={rowTitle} />
-      <div className="static w-full flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 py-8 pl-6">
-        <FiChevronLeft className="absolute self-center left-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
-        <FiChevronRight className="absolute self-center right-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
-
+      <div
+        onScroll={onScroll}
+        ref={scrollRef}
+        className="static w-full flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 md:py-8 pl-6"
+      >
+        {showLeft && (
+          <button
+            onClick={() => {
+              scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 720
+            }}
+          >
+            <FiChevronLeft className="absolute self-center left-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+          </button>
+        )}
+        {showRight && (
+          <button
+            onClick={() => {
+              scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 800
+            }}
+          >
+            <FiChevronRight className="absolute self-center right-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+          </button>
+        )}
         {data?.results.map(movie => (
           <Link
             key={movie.id}
@@ -46,13 +85,14 @@ function Row({ rowTitle, request }) {
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={`${movie.title || movie.name} capa`}
-              className="h-52 object-cover drop-shadow-lg transition ease-in-out hover:scale-125 duration-200 cursor-pointer"
+              loading="lazy"
+              className="h-52 object-cover drop-shadow-lg transition ease-out md:hover:scale-125 duration-200 cursor-pointer"
             />
           </Link>
         ))}
         <div className="pl-10"></div>
       </div>
-    </div>
+    </section>
   )
 }
 
