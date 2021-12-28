@@ -54,7 +54,7 @@ function Row({ rowTitle, request }) {
       <div
         onScroll={onScroll}
         ref={scrollRef}
-        className="static w-full flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 md:py-8 pl-6"
+        className="w-full flex overflow-hidden scrollbar-hide overflow-x-scroll scroll-smooth space-x-6 md:py-8 pl-6"
       >
         {showLeft && (
           <button
@@ -62,7 +62,7 @@ function Row({ rowTitle, request }) {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 720
             }}
           >
-            <FiChevronLeft className="absolute self-center left-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+            <FiChevronLeft className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 left-6 md:left-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
           </button>
         )}
         {showRight && (
@@ -71,7 +71,7 @@ function Row({ rowTitle, request }) {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 800
             }}
           >
-            <FiChevronRight className="absolute self-center right-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+            <FiChevronRight className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 right-6 md:right-14 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
           </button>
         )}
         {data?.results.map(movie => (
@@ -86,7 +86,7 @@ function Row({ rowTitle, request }) {
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={`${movie.title || movie.name} capa`}
               loading="lazy"
-              className="h-52 object-cover drop-shadow-lg transition ease-out md:hover:scale-125 duration-200 cursor-pointer"
+              className="h-52 rounded-lg object-cover drop-shadow-lg transition ease-out md:hover:scale-125 duration-200 cursor-pointer"
             />
           </Link>
         ))}

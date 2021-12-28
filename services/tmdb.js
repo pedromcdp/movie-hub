@@ -18,6 +18,10 @@ export const TMDB_API = createApi({
       query: ({ categorie, searchTerm }) =>
         `search/${categorie}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&query=${searchTerm}&page=1`,
     }),
+    getDiscover: builder.query({
+      query: ({ type, sort }) =>
+        `discover/${type}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&sort_by=${sort}`,
+    }),
   }),
 })
 
@@ -25,4 +29,5 @@ export const {
   useGetTrendingTitlesQuery,
   useGetMovieQuery,
   useGetSearchTermQuery,
+  useGetDiscoverQuery,
 } = TMDB_API

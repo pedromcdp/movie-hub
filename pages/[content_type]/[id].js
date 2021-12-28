@@ -39,7 +39,7 @@ function Detail() {
   }
 
   return (
-    <div className="bg-slate-850 h-screen">
+    <div className="bg-slate-850">
       <Head>
         <title>{`Movie HUB | ${data?.title || data?.name}`}</title>
       </Head>

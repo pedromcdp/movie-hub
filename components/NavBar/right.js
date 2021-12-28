@@ -8,10 +8,10 @@ function NavRight() {
         <CgMenuRightAlt />
       </div>
       <ul className="hidden md:flex space-x-6 tracking-wider font-light cursor-pointer">
-        <Link href="/filmes" passHref={true}>
+        <Link href="/discover/movie" passHref={true}>
           <li className="hover:opacity-70">Filmes</li>
         </Link>
-        <Link href="/series" passHref={true}>
+        <Link href="/discover/tv" passHref={true}>
           <li className="hover:opacity-70">Séries</li>
         </Link>
         <Link href="/sobre" passHref={true}>
