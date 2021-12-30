@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import NavBar from "../components/NavBar"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useGetSearchTermQuery } from "../services/tmdb"
@@ -12,7 +11,7 @@ function SearchPage() {
   const router = useRouter()
   const { q } = router.query
   const [page, setPage] = useState(1)
-  const { data, isFetching, isLoading } = useGetSearchTermQuery({
+  const { data } = useGetSearchTermQuery({
     categorie: "multi",
     searchTerm: q,
     page: page,
@@ -29,7 +28,6 @@ function SearchPage() {
       <Head>
         <title>MovieHUB | resultdos de pesquisa</title>
       </Head>
-      <NavBar />
       <main className="pt-20 max-w-screen-xl mx-auto min-h-screen">
         <h1 className="text-white tracking-wide text-2xl px-6">
           A pesquisar por: <span className="font-extralight">{q}</span>

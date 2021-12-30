@@ -1,5 +1,4 @@
 import Head from "next/head"
-import NavBar from "../../components/NavBar"
 import FilterSelector from "../../components/Discover/Filter_Row/FilterRow"
 import { useRouter } from "next/router"
 import { useGetDiscoverQuery } from "../../services/tmdb"
@@ -25,7 +24,6 @@ function Discover() {
   if (isLoading || isFetching) {
     return (
       <div>
-        <NavBar />
         <Loading />
       </div>
     )
@@ -36,7 +34,6 @@ function Discover() {
       <Head>
         <title>MovieHUB | {pageTitle}</title>
       </Head>
-      <NavBar />
       <main className="pt-20 max-w-screen-xl mx-auto">
         <FilterSelector
           pageTitle={pageTitle}
