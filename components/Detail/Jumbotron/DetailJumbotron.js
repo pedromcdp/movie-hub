@@ -1,5 +1,5 @@
 import Image from "next/image"
-function Jumbotron({ children, imgSource }) {
+function DetailJumbotron({ children, imgSource }) {
   return (
     <div className="h-[85vh] w-screen relative bg-gray-100">
       <Image
@@ -19,4 +19,4 @@ function Jumbotron({ children, imgSource }) {
   )
 }
 
-export default Jumbotron
+export default DetailJumbotron

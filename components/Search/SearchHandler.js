@@ -17,7 +17,6 @@ export function SearchHandler({ children }) {
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown)
-
     return () => {
       document.removeEventListener("keydown", onKeyDown)
     }

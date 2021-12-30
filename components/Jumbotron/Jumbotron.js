@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import Lottie from "react-lottie"
-import animationData from "../../animations/jumbotronLoader.json"
-import { useGetTrendingTitlesQuery } from "../../services/tmdb"
 import Link from "next/link"
-import Overlay from "../Overlay"
+import { useGetTrendingTitlesQuery } from "../../services/tmdb"
+import Overlay from "../Overlay/Overlay"
+import Loading from "../Loading/Loading"
 
 function Jumbotron() {
   const [hideMouse, setHideMouse] = useState(false)
@@ -18,14 +17,6 @@ function Jumbotron() {
     page: "1",
   })
   const [currentIndex, setCurrentIndex] = useState(0)
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  }
 
   const trasitionMouse = () => {
     if (window.scrollY > 100) {
@@ -34,13 +25,6 @@ function Jumbotron() {
       setHideMouse(false)
     }
   }
-
-  useEffect(() => {
-    window.addEventListener("scroll", trasitionMouse)
-    return () => {
-      window.removeEventListener("scroll", trasitionMouse)
-    }
-  }, [])
 
   useEffect(() => {
     let isSubscribed = true
@@ -58,14 +42,10 @@ function Jumbotron() {
       isSubscribed = false
       window.removeEventListener("scroll", trasitionMouse)
     }
-  }, [currentIndex])
+  })
 
   if (isLoading || isFetching) {
-    return (
-      <div className="w-screen h-screen bg-slate-850 flex justify-center items-center">
-        <Lottie options={defaultOptions} width={200} height={200} />
-      </div>
-    )
+    return <Loading />
   }
 
   return (

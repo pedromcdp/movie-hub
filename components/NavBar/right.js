@@ -14,7 +14,7 @@ function NavRight() {
         <Link href="/discover/tv" passHref={true}>
           <li className="hover:opacity-70">Séries</li>
         </Link>
-        <Link href="/sobre" passHref={true}>
+        <Link href="/about" passHref={true}>
           <li className="hover:opacity-70">Sobre</li>
         </Link>
       </ul>

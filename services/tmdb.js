@@ -15,12 +15,12 @@ export const TMDB_API = createApi({
         `${content_type}/${query}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=1`,
     }),
     getSearchTerm: builder.query({
-      query: ({ categorie, searchTerm }) =>
-        `search/${categorie}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&query=${searchTerm}&page=1`,
+      query: ({ categorie, searchTerm, page }) =>
+        `search/${categorie}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&query=${searchTerm}&page=${page}`,
     }),
     getDiscover: builder.query({
-      query: ({ type, sort }) =>
-        `discover/${type}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&sort_by=${sort}`,
+      query: ({ type, sort, page }) =>
+        `discover/${type}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&sort_by=${sort}&page=${page}`,
     }),
   }),
 })

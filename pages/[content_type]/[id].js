@@ -1,14 +1,13 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import NavBar from "../../components/NavBar"
-import Jumbotron from "../../components/Detail/Jumbotron"
-import Overlay from "../../components/Overlay"
-import Poster from "../../components/Detail/Jumbo_Poster"
+import Jumbotron from "../../components/Detail/Jumbotron/DetailJumbotron"
+import Overlay from "../../components/Overlay/Overlay"
+import Poster from "../../components/Detail/Jumbo_Poster/JumboPoster"
 import { useGetMovieQuery } from "../../services/tmdb"
-import Lottie from "react-lottie"
-import animationData from "../../animations/jumbotronLoader.json"
-import OverviewContainer from "../../components/Detail/Overview"
-import OverviewDetail from "../../components/Detail/Overview_Detail"
+import OverviewContainer from "../../components/Detail/Overview/OverviewContainer"
+import OverviewDetail from "../../components/Detail/Overview_Detail/OverviewDetail"
+import Loading from "../../components/Loading/Loading"
 
 function Detail() {
   const router = useRouter()
@@ -18,28 +17,12 @@ function Detail() {
     query: id,
   })
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  }
-
   if (isLoading || isFetching) {
-    return (
-      <div className="w-screen h-screen bg-slate-850 flex justify-center items-center">
-        <Head>
-          <title>Movie HUB | Loading</title>
-        </Head>
-        <Lottie options={defaultOptions} width={200} height={200} />
-      </div>
-    )
+    return <Loading />
   }
 
   return (
-    <div className="bg-slate-850">
+    <div className="bg-slate-850 min-h-[100vh]">
       <Head>
         <title>{`Movie HUB | ${data?.title || data?.name}`}</title>
       </Head>

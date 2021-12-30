@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { Listbox, Transition } from "@headlessui/react"
 import { filters } from "../../../utils/sort_filters"
 
@@ -14,7 +14,7 @@ function FilterSelector({ pageTitle, filter, setFilter }) {
             <>
               <Listbox.Button
                 className={
-                  "z-40 bg-slate-300 bg-opacity-80 text-white py-2 px-4 font-medium tracking-wide relative w-55 min-w-[10rem] " +
+                  "z-20 bg-slate-300 bg-opacity-80 text-white py-2 px-4 font-medium tracking-wide relative min-w-[16rem] " +
                   (open
                     ? "rounded-t-lg border-b border-gray-300 border-opacity-40"
                     : "rounded-lg")
@@ -33,12 +33,12 @@ function FilterSelector({ pageTitle, filter, setFilter }) {
               >
                 <Listbox.Options
                   static
-                  className="absolute z-40 w-full bg-slate-300 bg-opacity-80 rounded-b-lg divide-y divide-gray-300 divide-opacity-40 text-white font-medium cursor-pointer"
+                  className="absolute z-20 w-full bg-slate-300 bg-opacity-80 rounded-b-lg divide-y divide-gray-300 divide-opacity-40 text-white font-medium cursor-pointer"
                 >
                   {filters.map(filter => (
                     <Listbox.Option
                       key={filter.value}
-                      value={filter.name}
+                      value={filter}
                       className="py-1 px-2 hover:bg-slate-400 last:rounded-b-lg"
                     >
                       {filter.name}

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from "react"
 import Lottie from "react-lottie"
-import animationData from "../../animations/jumbotronLoader.json"
+import { loading } from "../../utils/lottie_options"
 import Link from "next/link"
 import RowHeader from "./RowHeader"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
@@ -10,15 +10,7 @@ function Row({ rowTitle, request }) {
   const scrollRef = useRef(null)
   const [showLeft, setShowLeft] = useState(false)
   const [showRight, setShowRight] = useState(true)
-  const { data, isFetching } = request
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  }
+  const { data, isFetching, isLoading } = request
 
   const onScroll = () => {
     if (scrollRef.current.scrollLeft > 0) {
@@ -36,14 +28,14 @@ function Row({ rowTitle, request }) {
     }
   }
 
-  if (isFetching) {
+  if (isLoading || isFetching) {
     return (
       <div className="w-screen h-auto flex-col px-6 md:px-14 pt-8 text-white">
         <div className="flex justify-between items-center">
           <h1 className="text-4xl">{rowTitle}</h1>
           <button>ver mais</button>
         </div>
-        <Lottie options={defaultOptions} width={100} height={100} />
+        <Lottie options={loading} width={100} height={100} />
       </div>
     )
   }
