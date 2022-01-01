@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setSearchState } from "../../features/NavBarSlice"
 import { useRouter } from "next/router"
 
-function Search({ setSearchBarState }) {
+function Search() {
   const router = useRouter()
   const dispatch = useDispatch()
   const searchInput = useRef(null)
