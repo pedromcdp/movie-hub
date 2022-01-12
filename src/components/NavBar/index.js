@@ -11,7 +11,7 @@ function NavBar() {
   const [showBarBg, setShowBarBg] = useState(false)
   const MobileNavState = useSelector(useMobileNavShow)
   const trasitionBar = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 1) {
       setShowBarBg(true)
     } else {
       setShowBarBg(false)

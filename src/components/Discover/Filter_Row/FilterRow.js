@@ -1,26 +1,43 @@
 import React from "react"
 import { Listbox, Transition } from "@headlessui/react"
 import { filters } from "../../../utils/sort_filters"
+import PropTypes from "prop-types"
+import { FiChevronDown } from "react-icons/fi"
+import { useSelector, useDispatch } from "react-redux"
+import {
+  SelectedFilter,
+  setFilter,
+  setPage,
+} from "../../../features/SearchSlice"
 
-function FilterSelector({ pageTitle, filter, setFilter }) {
+function FilterSelector({ pageTitle }) {
+  const dispatch = useDispatch()
+  const filter = useSelector(SelectedFilter)
+
+  function updateFilter(filter) {
+    dispatch(setFilter(filter))
+  }
+
   return (
     <div className="px-6 flex justify-between">
       <h1 className="font-medium text-white tracking-wide text-4xl">
         {pageTitle}
       </h1>
       <div className="relative flex flex-col self-center">
-        <Listbox value={filter.name} onChange={setFilter}>
+        <Listbox value={filter.name} onChange={updateFilter}>
           {({ open }) => (
             <>
               <Listbox.Button
                 className={
-                  "z-20 bg-slate-300 bg-opacity-80 text-white py-2 px-4 font-medium tracking-wide relative min-w-[16rem] " +
+                  "flex space-x-1 items-center justify-center z-20 bg-slate-300 bg-opacity-80 text-white py-2 px-4 font-medium tracking-wide min-w-[16rem] " +
                   (open
                     ? "rounded-t-lg border-b border-gray-300 border-opacity-40"
                     : "rounded-lg")
                 }
               >
-                Filtro: <span className="font-light">{filter.name}</span>
+                <span className="hidden md:inline-block">Filtro:</span>{" "}
+                <span className="font-light">{filter.name}</span>{" "}
+                <FiChevronDown />
               </Listbox.Button>
               <Transition
                 show={open}
@@ -55,3 +72,9 @@ function FilterSelector({ pageTitle, filter, setFilter }) {
 }
 
 export default FilterSelector
+
+FilterSelector.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  filter: PropTypes.objectOf(PropTypes.string),
+  setFilter: PropTypes.func,
+}

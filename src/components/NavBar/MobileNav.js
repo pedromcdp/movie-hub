@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { setMobileNavState } from "../../features/NavBarSlice"
+import { resetPageAndFilter } from "../../features/SearchSlice"
 import { useDispatch } from "react-redux"
 
 function MobileNav() {
@@ -9,7 +10,7 @@ function MobileNav() {
       <Link href="/discover/movie" passHref={true}>
         <li
           className="cursor-pointer"
-          onClick={() => dispatch(setMobileNavState())}
+          onClick={() => dispatch(setMobileNavState(), resetPageAndFilter())}
         >
           Filmes
         </li>
@@ -17,7 +18,7 @@ function MobileNav() {
       <Link href="/discover/tv" passHref={true}>
         <li
           className="cursor-pointer"
-          onClick={() => dispatch(setMobileNavState())}
+          onClick={() => dispatch(setMobileNavState(), resetPageAndFilter())}
         >
           Séries
         </li>
@@ -25,7 +26,7 @@ function MobileNav() {
       <Link href="/about" passHref={true}>
         <li
           className="cursor-pointer"
-          onClick={() => dispatch(setMobileNavState())}
+          onClick={() => dispatch(setMobileNavState(), resetPageAndFilter())}
         >
           Sobre
         </li>

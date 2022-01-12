@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 function RowHeader({ rowTitle }) {
   return (
     <div className="pr-6 md:pr-14">
@@ -7,3 +9,7 @@ function RowHeader({ rowTitle }) {
 }
 
 export default RowHeader
+
+RowHeader.propTypes = {
+  rowTitle: PropTypes.string.isRequired,
+}

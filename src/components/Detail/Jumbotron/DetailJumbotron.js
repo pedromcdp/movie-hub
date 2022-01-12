@@ -1,7 +1,8 @@
 import Image from "next/image"
+import PropTypes from "prop-types"
 function DetailJumbotron({ children, imgSource }) {
   return (
-    <div className="h-[85vh] relative bg-gray-100">
+    <div className="h-[85vh] min-h-[600px] relative bg-gray-100">
       <Image
         src={`https://image.tmdb.org/t/p/original/${imgSource}`}
         alt="background image"
@@ -20,3 +21,8 @@ function DetailJumbotron({ children, imgSource }) {
 }
 
 export default DetailJumbotron
+
+DetailJumbotron.propTypes = {
+  children: PropTypes.node.isRequired,
+  img: PropTypes.string,
+}

@@ -4,6 +4,7 @@ import { useClickOutside } from "@mantine/hooks"
 import { useDispatch } from "react-redux"
 import { setSearchState } from "../../features/NavBarSlice"
 import { useRouter } from "next/router"
+import { setPage } from "../../features/SearchSlice"
 
 function Search() {
   const router = useRouter()
@@ -24,6 +25,7 @@ function Search() {
       onSubmit={e => {
         e.preventDefault()
         dispatch(setSearchState(false))
+        dispatch(setPage(1))
         router.push({
           pathname: "/search",
           query: { q: searchInput.current.value },

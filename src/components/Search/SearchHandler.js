@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Search from "./"
 import { useSearchState, setSearchState } from "../../features/NavBarSlice"
+import PropTypes from "prop-types"
 
 export function SearchHandler({ children }) {
   const showSearch = useSelector(useSearchState)
@@ -27,4 +28,8 @@ export function SearchHandler({ children }) {
       {children}
     </div>
   )
+}
+
+SearchHandler.propTypes = {
+  children: PropTypes.node.isRequired,
 }

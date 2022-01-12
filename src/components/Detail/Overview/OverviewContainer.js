@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 function OverviewContainer({ children }) {
   return (
     <div className="absolute flex  h-full w-full">
@@ -9,3 +11,7 @@ function OverviewContainer({ children }) {
 }
 
 export default OverviewContainer
+
+OverviewContainer.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node.isRequired),
+}

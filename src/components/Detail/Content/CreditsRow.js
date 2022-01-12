@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
+import PropTypes from "prop-types"
 
 function CreditsRow({ rowTitle, children }) {
   const scrollRef = useRef(null)
@@ -57,3 +58,8 @@ function CreditsRow({ rowTitle, children }) {
 }
 
 export default CreditsRow
+
+CreditsRow.propTypes = {
+  rowTitle: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.node.isRequired),
+}

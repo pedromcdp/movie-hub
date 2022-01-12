@@ -1,4 +1,5 @@
 import Image from "next/image"
+import PropTypes from "prop-types"
 
 function Poster({ imgSource }) {
   return (
@@ -16,3 +17,7 @@ function Poster({ imgSource }) {
 }
 
 export default Poster
+
+Poster.propTypes = {
+  imgSource: PropTypes.string,
+}

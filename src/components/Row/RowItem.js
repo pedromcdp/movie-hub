@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import PropTypes from "prop-types"
 
 function RowItem({ movie, request }) {
   return (
@@ -34,3 +35,8 @@ function RowItem({ movie, request }) {
 }
 
 export default RowItem
+
+RowItem.propTypes = {
+  movie: PropTypes.object,
+  request: PropTypes.object,
+}

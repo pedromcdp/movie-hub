@@ -1,4 +1,5 @@
 import Image from "next/image"
+import PropTypes from "prop-types"
 
 function CreditsItem({ person }) {
   return (
@@ -28,3 +29,7 @@ function CreditsItem({ person }) {
   )
 }
 export default CreditsItem
+
+CreditsItem.propTypes = {
+  person: PropTypes.object,
+}

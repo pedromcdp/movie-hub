@@ -4,7 +4,6 @@ stages:
   - install
   - test
   - build
-  - deploy
 
 variables:
   FF_USE_FASTZIP: "true"

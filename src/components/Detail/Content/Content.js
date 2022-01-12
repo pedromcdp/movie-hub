@@ -2,6 +2,7 @@ import React from "react"
 import ContentDetail from "./ContentDetail"
 import ContentMain from "./ContentMain"
 import { useGetCastQuery } from "../../../services/tmdb"
+import PropTypes from "prop-types"
 
 function Content({ data: general_data, id, type }) {
   const { data: cast_data } = useGetCastQuery({ type: type, id: id })
@@ -15,3 +16,9 @@ function Content({ data: general_data, id, type }) {
 }
 
 export default Content
+
+Content.propTypes = {
+  data: PropTypes.object,
+  id: PropTypes.string,
+  type: PropTypes.string,
+}

@@ -8,12 +8,15 @@ import ListItem from "../../components/Discover/List_Item/ListItem"
 import { filters } from "../../utils/sort_filters"
 import Pagination from "../../components/Discover/Pagination/Pagination"
 import Loading from "../../components/Loading/Loading"
+import { useSelector } from "react-redux"
+import { SelectedPage, SelectedFilter } from "../../features/SearchSlice"
 
 function Discover() {
   const router = useRouter()
   const { type } = router.query
-  const [filter, setFilter] = useState(filters[1])
-  const [page, setPage] = useState(1)
+  // const [filter, setFilter] = useState(filters[1])
+  const page = useSelector(SelectedPage)
+  const filter = useSelector(SelectedFilter)
   const { data, isFetching, isLoading } = useGetDiscoverQuery({
     type: type,
     sort: filter.value,
@@ -32,24 +35,16 @@ function Discover() {
   return (
     <div className="bg-slate-850 min-h-screen">
       <Head>
-        <title>MovieHUB | {pageTitle}</title>
+        <title>Movie HUB | {pageTitle}</title>
       </Head>
       <main className="pt-20 max-w-screen-xl mx-auto">
-        <FilterSelector
-          pageTitle={pageTitle}
-          filter={filter}
-          setFilter={setFilter}
-        />
+        <FilterSelector pageTitle={pageTitle} />
         <List>
           {data?.results.map(item => (
             <ListItem key={item.id} item={item} type={type} />
           ))}
         </List>
-        <Pagination
-          setPage={setPage}
-          page={page}
-          totalPages={data?.total_pages}
-        />
+        <Pagination page={page} totalPages={data?.total_pages} />
       </main>
     </div>
   )

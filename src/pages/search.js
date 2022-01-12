@@ -26,7 +26,7 @@ function SearchPage() {
   return (
     <div className="bg-slate-850">
       <Head>
-        <title>MovieHUB | resultdos de pesquisa</title>
+        <title>Movie HUB | resultdos de pesquisa</title>
       </Head>
       <main className="pt-20 max-w-screen-xl mx-auto min-h-screen">
         <h1 className="text-white tracking-wide text-2xl px-6">

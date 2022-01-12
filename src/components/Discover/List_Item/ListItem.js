@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import PropTypes from "prop-types"
 
 function ListItem({ item, type }) {
   return (
@@ -33,3 +34,8 @@ function ListItem({ item, type }) {
 }
 
 export default ListItem
+
+ListItem.propTypes = {
+  item: PropTypes.object,
+  type: PropTypes.string,
+}

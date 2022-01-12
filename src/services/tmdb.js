@@ -26,10 +26,6 @@ export const TMDB_API = createApi({
       query: ({ type, id }) =>
         `/${type}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt`,
     }),
-    getReviews: builder.query({
-      query: movie_id =>
-        `/movie/${movie_id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt`,
-    }),
   }),
 })
 

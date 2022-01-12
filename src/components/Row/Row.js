@@ -4,6 +4,7 @@ import { loading } from "../../utils/lottie_options"
 import RowHeader from "./RowHeader"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 import RowItem from "./RowItem"
+import PropTypes from "prop-types"
 
 function Row({ rowTitle, request }) {
   const scrollRef = useRef(null)
@@ -45,7 +46,7 @@ function Row({ rowTitle, request }) {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 720
             }}
           >
-            <FiChevronLeft className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 top-[45%] z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+            <FiChevronLeft className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 top-1/2 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
           </button>
         )}
         {showRight && (
@@ -54,7 +55,7 @@ function Row({ rowTitle, request }) {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 800
             }}
           >
-            <FiChevronRight className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 right-6 md:right-14 top-[45%] z-10 bg-white text-black text-2xl rounded-full shadow-md" />
+            <FiChevronRight className="absolute md:h-8 md:w-8 hover:scale-150 trasition ease-out duration-200 right-6 md:right-14 top-1/2 z-10 bg-white text-black text-2xl rounded-full shadow-md" />
           </button>
         )}
         <RowHeader rowTitle={rowTitle} />
@@ -74,3 +75,8 @@ function Row({ rowTitle, request }) {
 }
 
 export default Row
+
+Row.propTypes = {
+  rowTitle: PropTypes.string.isRequired,
+  request: PropTypes.object.isRequired,
+}

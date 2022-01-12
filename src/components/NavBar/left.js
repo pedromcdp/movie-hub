@@ -2,6 +2,7 @@ import Link from "next/link"
 import { RiSearch2Line } from "react-icons/ri"
 import { setSearchState } from "../../features/NavBarSlice"
 import { useDispatch } from "react-redux"
+import { resetPageAndFilter } from "../../features/SearchSlice"
 
 function NavLeft() {
   const dispatch = useDispatch()
@@ -12,7 +13,10 @@ function NavLeft() {
       </div>
       <div className="hidden md:flex">
         <Link href="/" passHref={true}>
-          <span className="cursor-pointer font-light text-3xl antialiased hover:opacity-70">
+          <span
+            onClick={() => dispatch(resetPageAndFilter())}
+            className="cursor-pointer font-light text-3xl antialiased hover:opacity-70"
+          >
             Movie<span className="font-bold">HUB</span>
           </span>
         </Link>
