@@ -2,10 +2,8 @@ import Head from "next/head"
 import FilterSelector from "../../components/Discover/Filter_Row/FilterRow"
 import { useRouter } from "next/router"
 import { useGetDiscoverQuery } from "../../services/tmdb"
-import { useState } from "react"
 import List from "../../components/Discover/List/List"
 import ListItem from "../../components/Discover/List_Item/ListItem"
-import { filters } from "../../utils/sort_filters"
 import Pagination from "../../components/Discover/Pagination/Pagination"
 import Loading from "../../components/Loading/Loading"
 import { useSelector } from "react-redux"
@@ -14,7 +12,6 @@ import { SelectedPage, SelectedFilter } from "../../features/SearchSlice"
 function Discover() {
   const router = useRouter()
   const { type } = router.query
-  // const [filter, setFilter] = useState(filters[1])
   const page = useSelector(SelectedPage)
   const filter = useSelector(SelectedFilter)
   const { data, isFetching, isLoading } = useGetDiscoverQuery({

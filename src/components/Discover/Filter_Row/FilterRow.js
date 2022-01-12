@@ -4,11 +4,7 @@ import { filters } from "../../../utils/sort_filters"
 import PropTypes from "prop-types"
 import { FiChevronDown } from "react-icons/fi"
 import { useSelector, useDispatch } from "react-redux"
-import {
-  SelectedFilter,
-  setFilter,
-  setPage,
-} from "../../../features/SearchSlice"
+import { SelectedFilter, setFilter } from "../../../features/SearchSlice"
 
 function FilterSelector({ pageTitle }) {
   const dispatch = useDispatch()
