@@ -1,0 +1,59 @@
+image: node:14
+
+stages:
+  - install
+  - test
+  - build
+
+variables:
+  FF_USE_FASTZIP: "true"
+  ARTIFACT_COMPRESSION_LEVEL: fastest
+  CACHE_COMPRESSION_LEVEL: fastest
+  TRANSFER_METER_FREQUENCY: 5s
+
+Install:
+  stage: install
+  script:
+    - yarn
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules/
+  artifacts:
+    expire_in: 1 week
+    when: on_success
+    paths:
+      - node_modules/
+
+Test:
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  dependencies:
+    - Install
+  script:
+    - yarn test
+  allow_failure: false
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      cobertura: coverage/cobertura-coverage.xml
+
+Prettier:
+  stage: test
+  dependencies:
+    - Install
+  script:
+    - yarn prettier
+  allow_failure: false
+
+Lint:
+  stage: test
+  dependencies:
+    - Install
+  script:
+    - yarn lint
+  allow_failure: false
