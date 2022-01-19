@@ -6,11 +6,13 @@ import List from "../components/Discover/List/List"
 import ListItem from "../components/Discover/List_Item/ListItem"
 import { RiErrorWarningLine } from "react-icons/ri"
 import Pagination from "../components/Discover/Pagination/Pagination"
+import { useSelector } from "react-redux"
+import { SelectedPage } from "../features/SearchSlice"
 
 function SearchPage() {
   const router = useRouter()
   const { q } = router.query
-  const [page, setPage] = useState(1)
+  const page = useSelector(SelectedPage)
   const { data } = useGetSearchTermQuery({
     categorie: "multi",
     searchTerm: q,
@@ -46,11 +48,7 @@ function SearchPage() {
                 <ListItem key={item.id} item={item} />
               ))}
             </List>
-            <Pagination
-              setPage={setPage}
-              page={page}
-              totalPages={data?.total_pages}
-            />
+            <Pagination page={page} totalPages={data?.total_pages} />
           </>
         )}
       </main>
