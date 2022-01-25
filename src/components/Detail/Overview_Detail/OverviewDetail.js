@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 
 function OverviewDetail({ content_title, genres, release_date }) {
   return (
-    <article className="text-white mx-2 self-end tracking-wide antialiased flex flex-col items-center md:items-start md:justify-end">
+    <article className="text-white mx-2 md:self-end tracking-wide antialiased flex flex-col items-center md:items-start justify-center md:justify-end">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium">
         {content_title}
       </h2>
