@@ -15,7 +15,6 @@ export function SearchHandler({ children }) {
       (os === "macos" ? e.metaKey : e.ctrlKey && e.key === "k") ||
       (os === "macos" ? e.metaKey : e.ctrlKey && e.key === "K")
     ) {
-      console.log(e)
       e.preventDefault()
       dispatch(setSearchState(true))
     } else if (e.key === "Escape") {

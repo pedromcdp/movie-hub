@@ -59,27 +59,12 @@ Lint:
     - yarn lint
   allow_failure: false
 
-Build:
-  stage: build
-  dependencies:
-    - Install
-  script:
-    - yarn build
-  artifacts:
-    expire_in: 2 hrs 20 min
-    paths:
-      - public
-    when: on_success
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
 Deploy:
   stage: deploy
   dependencies:
-    - Build
     - Install
   script:
-    - npx vercel -t $VERCEL_TOKEN --prod -c
+    - npx netlify deploy --build --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
