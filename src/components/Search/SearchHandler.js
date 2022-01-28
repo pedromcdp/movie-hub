@@ -12,8 +12,10 @@ export function SearchHandler({ children }) {
 
   function onKeyDown(e) {
     if (
-      (os === "macos" ? e.metaKey : e.ctrlKey && e.key === "k") ||
-      (os === "macos" ? e.metaKey : e.ctrlKey && e.key === "K")
+      (os === "macos"
+        ? e.metaKey && e.key === "k"
+        : e.ctrlKey && e.key === "k") ||
+      (os === "macos" ? e.metaKey && e.key === "K" : e.ctrlKey && e.key === "K")
     ) {
       e.preventDefault()
       dispatch(setSearchState(true))
@@ -30,10 +32,10 @@ export function SearchHandler({ children }) {
   })
 
   return (
-    <div>
+    <>
       {showSearch && <Search />}
       {children}
-    </div>
+    </>
   )
 }
 
