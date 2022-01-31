@@ -16,48 +16,48 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
-          href="../../public/fonts/Calibre-Bold.woff2"
+          href="fonts/Calibre-Bold.woff2"
           as="font"
           crossOrigin=""
           type="font/woff2"
         />
         <link
           rel="preload"
-          href="../../public/fonts/Calibre-Light.woff2"
+          href="fonts/Calibre-Light.woff2"
           as="font"
           crossOrigin=""
           type="font/woff2"
         />
         <link
           rel="preload"
-          href="../../public/fonts/Calibre-Medium.woff2"
+          href="fonts/Calibre-Medium.woff2"
           as="font"
           crossOrigin=""
           type="font/woff2"
         />
         <link
           rel="preload"
-          href="../../public/fonts/Calibre-Regular.woff2"
+          href="fonts/Calibre-Regular.woff2"
           as="font"
           crossOrigin=""
           type="font/woff2"
         />
         <link
           rel="preload"
-          href="../../public/fonts/Calibre-Semibold.woff2"
+          href="fonts/Calibre-Semibold.woff2"
           as="font"
           crossOrigin=""
           type="font/woff2"
         />
         <link
           rel="preload"
-          href="../../public/images/overlay.png"
+          href="images/overlay.png"
           as="image"
           type="image/png"
         />
         <link
           rel="preload"
-          href="../../public/images/profile.png"
+          href="images/profile.png"
           as="image"
           type="image/png"
         />
