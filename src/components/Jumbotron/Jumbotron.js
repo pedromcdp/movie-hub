@@ -1,3 +1,4 @@
+import Head from "next/head"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -50,6 +51,15 @@ function Jumbotron() {
 
   return (
     <div className="h-screen relative min-h-[680px]">
+      <Head>
+        <link
+          rel="prefetch"
+          href={`https://image.tmdb.org/t/p/original/${movieData?.results[0].backdrop_path}`}
+          as="image"
+          crossOrigin=""
+          type="image/jpeg"
+        />
+      </Head>
       <Image
         src={`https://image.tmdb.org/t/p/original/${movieData?.results[currentIndex].backdrop_path}`}
         alt={`${
