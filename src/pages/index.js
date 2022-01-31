@@ -14,6 +14,53 @@ export default function Home() {
           explorar tudo sobre todos os filmes e séries do mundo 🌎!"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="../../public/fonts/Calibre-Bold.woff2"
+          as="font"
+          crossOrigin=""
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="../../public/fonts/Calibre-Light.woff2"
+          as="font"
+          crossOrigin=""
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="../../public/fonts/Calibre-Medium.woff2"
+          as="font"
+          crossOrigin=""
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="../../public/fonts/Calibre-Regular.woff2"
+          as="font"
+          crossOrigin=""
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="../../public/fonts/Calibre-Semibold.woff2"
+          as="font"
+          crossOrigin=""
+          type="font/woff2"
+        />
+        <link
+          rel="preload"
+          href="../../public/images/overlay.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="../../public/images/profile.png"
+          as="image"
+          type="image/png"
+        />
       </Head>
       <main>
         <Jumbotron />
