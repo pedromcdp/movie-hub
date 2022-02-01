@@ -53,12 +53,14 @@ export default function Home() {
           rel="preload"
           href="images/overlay.png"
           as="image"
+          crossOrigin=""
           type="image/png"
         />
         <link
           rel="preload"
           href="images/profile.png"
           as="image"
+          crossOrigin=""
           type="image/png"
         />
       </Head>
