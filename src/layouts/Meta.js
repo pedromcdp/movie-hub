@@ -53,14 +53,14 @@ const Meta = ({ title }) => {
         />
         <link
           rel="preload"
-          href={`${basePath}/images/overlay.png`}
+          href={`${basePath}/assets/overlay.png`}
           as="image"
           crossOrigin=""
           type="image/png"
         />
         <link
           rel="preload"
-          href={`${basePath}/images/profile.png`}
+          href={`${basePath}/assets/profile.png`}
           as="image"
           crossOrigin=""
           type="image/png"

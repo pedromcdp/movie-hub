@@ -5,7 +5,7 @@ function ProfilePic() {
     <div className="flex flex-col items-center">
       <div className="w-40 h-40 bg-gradient-to-t from-slate-300 to-white shadow-xl rounded-full relative">
         <Image
-          src="/images/profile.png"
+          src="/assets/profile.png"
           layout="fill"
           alt="foto de perfil"
           priority

@@ -11,7 +11,7 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "jumbo-overlay": "url('/images/overlay.png')",
+        "jumbo-overlay": "url('/assets/overlay.png')",
       },
       fontFamily: {
         sans: ["Calibre", "sans-serif"],
