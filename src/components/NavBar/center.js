@@ -1,15 +1,19 @@
 import Link from "next/link"
 import { RiSearch2Line } from "react-icons/ri"
 import { useOs } from "@mantine/hooks"
-import { setSearchState } from "../../features/NavBarSlice"
-import { useDispatch } from "react-redux"
+import { setSearchState, useSearchState } from "../../features/NavBarSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { motion } from "framer-motion"
 
 function Center() {
   const os = useOs()
   const dispatch = useDispatch()
+  const showSearch = useSelector(useSearchState)
   return (
     <div className="flex basis-2/4 justify-center">
-      <div
+      <motion.div
+        animate={{ opacity: showSearch ? 0 : 1, y: showSearch ? 55 : 0 }}
+        transition={{ duration: 0.25 }}
         onClick={() => dispatch(setSearchState(true))}
         className="hidden md:flex w-full items-center md:w-72 space-x-2 bg-slate-300 bg-opacity-40 rounded-md shadow-xl px-2 py-1"
       >
@@ -20,7 +24,7 @@ function Center() {
         <span className="flex flex-auto justify-end text-xs font-semibold pt-1">
           {os === "macos" || ("windows" && os === "macos") ? "⌘" : "ctrl"} K
         </span>
-      </div>
+      </motion.div>
       <div className="flex md:hidden">
         <Link href="/" passHref={true}>
           <h1 className="cursor-pointer font-light text-3xl antialiased hover:opacity-70">

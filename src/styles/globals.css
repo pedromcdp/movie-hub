@@ -2,3 +2,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+footer {
+  @apply bg-slate-850 bottom-0 text-center tracking-wide text-white py-4;
+}
+.nav-item {
+  @apply cursor-pointer hover:opacity-70 transition-opacity duration-150 tracking-wider ease-in-out;
+}

@@ -25,10 +25,11 @@ function CreditsRow({ rowTitle, children }) {
 
   return (
     <div className="flex-col">
-      <h1 className="text-2xl font-medium tracking-wide">{rowTitle}</h1>
+      <h1 className="text-2xl font-semibold tracking-wide">{rowTitle}</h1>
       <div className="relative w-full">
         {showLeft && (
           <button
+            aria-label="Scroll Left"
             onClick={() => {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 720
             }}
@@ -38,6 +39,7 @@ function CreditsRow({ rowTitle, children }) {
         )}
         {showRight && (
           <button
+            aria-label="Scroll Right"
             onClick={() => {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 800
             }}

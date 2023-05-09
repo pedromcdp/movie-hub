@@ -1,116 +1,72 @@
-import Head from "next/head"
 import Jumbotron from "../components/Jumbotron/Jumbotron"
 import Row from "../components/Row/Row"
 import { useGetTrendingTitlesQuery, useGetMovieQuery } from "../services/tmdb"
+import Page from "../layouts/Page"
 
-export default function Home() {
+function Home() {
+  const rowItems = [
+    {
+      title: "Nos Cinemas",
+      request: useGetMovieQuery({
+        type: "movie",
+        query: "now_playing",
+      }),
+    },
+    {
+      title: "Tendências",
+      request: useGetMovieQuery({
+        type: "trending",
+        query: "all/day",
+      }),
+    },
+    {
+      title: "Mais Votados",
+      request: useGetMovieQuery({
+        type: "movie",
+        query: "top_rated",
+      }),
+    },
+    {
+      title: "Em Breve",
+      request: useGetMovieQuery({
+        type: "movie",
+        query: "upcoming",
+      }),
+    },
+    {
+      title: "Filmes em Destaque",
+      request: useGetTrendingTitlesQuery({
+        type: "movie",
+        time_window: "day",
+        page: "1",
+      }),
+    },
+    {
+      title: "Séries em Destaque",
+      request: useGetTrendingTitlesQuery({
+        type: "tv",
+        time_window: "day",
+        page: "1",
+      }),
+    },
+  ]
+
   return (
-    <div className="bg-slate-850">
-      <Head>
-        <title>Movie HUB</title>
-        <meta
-          name="description"
-          content="O MovieHUB é uma plataforma que te permite
-          explorar tudo sobre todos os filmes e séries do mundo 🌎!"
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="fonts/Calibre-Bold.woff2"
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href="fonts/Calibre-Light.woff2"
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href="fonts/Calibre-Medium.woff2"
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href="fonts/Calibre-Regular.woff2"
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href="fonts/Calibre-Semibold.woff2"
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href="images/overlay.png"
-          as="image"
-          crossOrigin=""
-          type="image/png"
-        />
-        <link
-          rel="preload"
-          href="images/profile.png"
-          as="image"
-          crossOrigin=""
-          type="image/png"
-        />
-      </Head>
-      <main>
-        <Jumbotron />
+    <>
+      <Jumbotron />
+      {rowItems.map(RowItem => (
         <Row
-          rowTitle="Nos cinemas"
-          request={useGetMovieQuery({
-            content_type: "movie",
-            query: "now_playing",
-          })}
+          key={RowItem.title}
+          rowTitle={RowItem.title}
+          request={RowItem.request}
         />
-        <Row
-          rowTitle="Tendências"
-          request={useGetMovieQuery({
-            content_type: "movie",
-            query: "popular",
-          })}
-        />
-        <Row
-          rowTitle="Brevemente"
-          request={useGetMovieQuery({
-            content_type: "movie",
-            query: "upcoming",
-          })}
-        />
-        <Row
-          rowTitle="Mais Votados"
-          request={useGetMovieQuery({
-            content_type: "movie",
-            query: "top_rated",
-          })}
-        />
-        <Row
-          rowTitle="Filmes em Destaque"
-          request={useGetTrendingTitlesQuery({
-            type: "movie",
-            time_window: "day",
-            page: "1",
-          })}
-        />
-        <Row
-          rowTitle="Séries em Destaque"
-          request={useGetTrendingTitlesQuery({
-            type: "tv",
-            time_window: "day",
-            page: "1",
-          })}
-        />
-      </main>
-    </div>
+      ))}
+    </>
   )
 }
+
+Home.getLayout = function getLayout(page) {
+  return <Page title="Movie HUB">{page}</Page>
+}
+
+export default Home

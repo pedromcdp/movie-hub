@@ -6,11 +6,13 @@ function RowItem({ movie, request }) {
   return (
     <Link
       href={`/${
-        request?.originalArgs.content_type || request?.originalArgs.type
+        request?.originalArgs?.type === "trending"
+          ? movie.media_type
+          : request?.originalArgs.type
       }/${movie.id}`}
       passHref
     >
-      <div className="md:hover:scale-125 ease-out duration-300 space-y-2 cursor-pointer">
+      <div className="md:hover:scale-125 ease-out duration-300 space-y-2 cursor-pointer relative">
         <div className="relative flex h-52 w-32 bg-gray-50 bg-opacity-10 my-1 z-0 rounded-lg items-center justify-center font-medium tracking-wide text-white">
           {movie.poster_path ? (
             <Image

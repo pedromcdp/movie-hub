@@ -1,4 +1,4 @@
-export const filters = [
+const SortFilters = [
   {
     name: "Popularidade Ascendente",
     value: "popularity.asc",
@@ -32,3 +32,5 @@ export const filters = [
     value: "vote_count.asc",
   },
 ]
+
+export { SortFilters }

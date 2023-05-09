@@ -15,9 +15,9 @@ function NavLeft() {
         <Link href="/" passHref={true}>
           <span
             onClick={() => dispatch(resetPageAndFilter())}
-            className="cursor-pointer font-light text-3xl antialiased hover:opacity-70"
+            className="cursor-pointer font-light text-3xl hover:opacity-70 transition-opacity ease-in-out duration-150 tracking-wide antialiased"
           >
-            Movie<span className="font-bold">HUB</span>
+            Movie<span className="font-semibold pl-0.5">HUB</span>
           </span>
         </Link>
       </div>

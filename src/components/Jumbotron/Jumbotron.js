@@ -1,13 +1,12 @@
-import Head from "next/head"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useGetTrendingTitlesQuery } from "../../services/tmdb"
 import Overlay from "../Overlay/Overlay"
 import Loading from "../Loading/Loading"
+import { useHideMouse } from "../../hooks/useHideMouse"
 
 function Jumbotron() {
-  const [hideMouse, setHideMouse] = useState(false)
   const {
     data: movieData,
     isLoading,
@@ -18,19 +17,10 @@ function Jumbotron() {
     page: "1",
   })
   const [currentIndex, setCurrentIndex] = useState(0)
-
-  const trasitionMouse = () => {
-    if (window.scrollY > 100) {
-      setHideMouse(true)
-    } else {
-      setHideMouse(false)
-    }
-  }
+  const { hideMouse } = useHideMouse()
 
   useEffect(() => {
-    let isSubscribed = true
-    if (isSubscribed) {
-      window.addEventListener("scroll", trasitionMouse)
+    const updateIndex = () => {
       setTimeout(() => {
         if (currentIndex === 19) {
           setCurrentIndex(0)
@@ -39,27 +29,15 @@ function Jumbotron() {
         }
       }, 10000)
     }
-    return () => {
-      isSubscribed = false
-      window.removeEventListener("scroll", trasitionMouse)
-    }
-  })
+    updateIndex()
+  }, [currentIndex])
 
   if (isLoading || isFetching) {
     return <Loading />
   }
 
   return (
-    <div className="h-screen relative min-h-[680px]">
-      <Head>
-        <link
-          rel="prefetch"
-          href={`https://image.tmdb.org/t/p/original/${movieData?.results[0].backdrop_path}`}
-          as="image"
-          crossOrigin=""
-          type="image/jpeg"
-        />
-      </Head>
+    <section className="h-screen relative min-h-[680px]">
       <Image
         src={`https://image.tmdb.org/t/p/original/${movieData?.results[currentIndex].backdrop_path}`}
         alt={`${
@@ -78,10 +56,16 @@ function Jumbotron() {
               movieData?.results[currentIndex].name}
           </h1>
           <p className="text-xs">
-            Título original:{" "}
-            {movieData?.results[currentIndex].original_title ||
-              movieData?.results[currentIndex].original_name}{" "}
-            | Pontuação: {movieData?.results[currentIndex].vote_average}
+            Título original: <span className="font-medium"></span>
+            <span className="font-medium">
+              {movieData?.results[currentIndex].original_title ||
+                movieData?.results[currentIndex].original_name}
+            </span>{" "}
+            | Pontuação:{" "}
+            <span className="font-medium">
+              {Math.round(movieData?.results[currentIndex].vote_average * 10) /
+                10}
+            </span>
           </p>
           <p className="pt-2 text-clip overflow-hidden w-full md:w-2/4">
             {movieData?.results[currentIndex].overview &&
@@ -94,10 +78,17 @@ function Jumbotron() {
             href={`/${movieData?.results[currentIndex].media_type}/${movieData?.results[currentIndex].id}`}
             passHref
           >
-            <button className="bg-white text-opacity-100 p-3 mt-2 w-48 text-black rounded">
-              Mais Informação
+            <button
+              aria-label={`Ver mais informações sobre ${
+                movieData?.results[currentIndex].original_title ||
+                movieData?.results[currentIndex].original_name
+              }`}
+              className="bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded"
+            >
+              Mais Informações
             </button>
           </Link>
+          {/* MOUSE */}
           <div
             className={
               "hidden md:block border-2 border-white self-center w-5 h-8 rounded-xl animate-bounce mt-12 transition duration-500 ease-in-out " +
@@ -106,9 +97,10 @@ function Jumbotron() {
           >
             <div className="absolute bg-white left-1.5 rounded-full top-1.5 right-1.5 w-1 h-1"></div>
           </div>
+          {/* //////// */}
         </div>
       </Overlay>
-    </div>
+    </section>
   )
 }
 

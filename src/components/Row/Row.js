@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import Lottie from "react-lottie"
-import { loading } from "../../utils/lottie_options"
+import { LoadingAnimation } from "../../utils/LottieOptions"
 import RowHeader from "./RowHeader"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 import RowItem from "./RowItem"
@@ -32,7 +32,7 @@ function Row({ rowTitle, request }) {
     return (
       <div className="w-screen h-auto flex-col px-6 md:px-14 pt-8 text-white">
         <h1 className="text-4xl">{rowTitle}</h1>
-        <Lottie options={loading} width={100} height={100} />
+        <Lottie options={LoadingAnimation} width={100} height={100} />
       </div>
     )
   }
@@ -42,6 +42,7 @@ function Row({ rowTitle, request }) {
       <div className="relative w-full h-auto">
         {showLeft && (
           <button
+            aria-label="Scroll Left"
             onClick={() => {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - 720
             }}
@@ -51,6 +52,7 @@ function Row({ rowTitle, request }) {
         )}
         {showRight && (
           <button
+            aria-label="Scroll Right"
             onClick={() => {
               scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + 800
             }}
@@ -67,7 +69,7 @@ function Row({ rowTitle, request }) {
           {data?.results.map(movie => (
             <RowItem key={movie.id} request={request} movie={movie} />
           ))}
-          <div className="pl-10"></div>
+          <div className="pl-10" />
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Search from "./"
 import { useSearchState, setSearchState } from "../../features/NavBarSlice"
 import { useOs } from "@mantine/hooks"
 import PropTypes from "prop-types"
+import { AnimatePresence } from "framer-motion"
 
 export function SearchHandler({ children }) {
   const showSearch = useSelector(useSearchState)
@@ -33,7 +34,7 @@ export function SearchHandler({ children }) {
 
   return (
     <>
-      {showSearch && <Search />}
+      <AnimatePresence>{showSearch && <Search />}</AnimatePresence>
       {children}
     </>
   )

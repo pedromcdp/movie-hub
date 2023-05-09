@@ -1,6 +1,6 @@
 import animationData from "../animations/jumbotronLoader.json"
 
-export const loading = {
+const LoadingAnimation = {
   loop: true,
   autoplay: true,
   animationData: animationData,
@@ -8,3 +8,5 @@ export const loading = {
     preserveAspectRatio: "xMidYMid slice",
   },
 }
+
+export { LoadingAnimation }

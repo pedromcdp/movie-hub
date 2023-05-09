@@ -16,6 +16,7 @@ function Pagination({ page, totalPages }) {
       <div className="space-x-4">
         {page >= 2 && (
           <button
+            aria-label="Ir para página anterior"
             onClick={() => dispatch(setPreviousPage())}
             className="p-2 bg-gray-400 bg-opacity-40 rounded-lg md:w-44"
           >
@@ -27,6 +28,7 @@ function Pagination({ page, totalPages }) {
         )}
         {page < totalPages && (
           <button
+            aria-label="Ir para próxima página"
             onClick={() => dispatch(setNextPage())}
             className="p-2 bg-gray-400 bg-opacity-40 rounded-lg md:w-44"
           >
