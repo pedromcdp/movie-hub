@@ -25,14 +25,15 @@ function NavRight() {
       </div>
       <ul className="hidden md:flex space-x-6 tracking-wider font-light">
         {NavItems.map((item, index) => (
-          <Link href={item.path} passHref={true} key={index}>
-            <li
-              onClick={() => dispatch(resetPageAndFilter())}
-              className="nav-item"
-            >
+          <li
+            key={index}
+            onClick={() => dispatch(resetPageAndFilter())}
+            className="nav-item"
+          >
+            <Link href={item.path} passHref={true}>
               {item.name}
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

@@ -16,55 +16,6 @@ const Meta = ({ title }) => {
           key="viewport"
         />
         <link rel="icon" href={`${basePath}/favicon.ico`} />
-        <link
-          rel="preload"
-          href={`${basePath}/fonts/Calibre-Bold.woff2`}
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/fonts/Calibre-Light.woff2`}
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/fonts/Calibre-Medium.woff2`}
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/fonts/Calibre-Regular.woff2`}
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/fonts/Calibre-Semibold.woff2`}
-          as="font"
-          crossOrigin=""
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/assets/overlay.png`}
-          as="image"
-          crossOrigin=""
-          type="image/png"
-        />
-        <link
-          rel="preload"
-          href={`${basePath}/assets/profile.png`}
-          as="image"
-          crossOrigin=""
-          type="image/png"
-        />
       </Head>
       <NextSeo
         title={title || AppConfig.title}

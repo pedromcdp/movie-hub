@@ -77,16 +77,13 @@ function Jumbotron() {
           <Link
             href={`/${movieData?.results[currentIndex].media_type}/${movieData?.results[currentIndex].id}`}
             passHref
+            className="bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded text-center"
+            aria-label={`Mais informações sobre ${
+              movieData?.results[currentIndex].original_title ||
+              movieData?.results[currentIndex].original_name
+            }`}
           >
-            <button
-              aria-label={`Ver mais informações sobre ${
-                movieData?.results[currentIndex].original_title ||
-                movieData?.results[currentIndex].original_name
-              }`}
-              className="bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded"
-            >
-              Mais Informações
-            </button>
+            Mais detalhes
           </Link>
           {/* MOUSE */}
           <div
