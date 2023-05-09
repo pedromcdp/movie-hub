@@ -40,7 +40,7 @@ function SearchPage({ q }) {
 }
 
 SearchPage.getLayout = function getLayout(page) {
-  return <Page title={"Movie HUB | resultdos de pesquisa"}>{page}</Page>
+  return <Page title={"Movie HUB | resultados de pesquisa"}>{page}</Page>
 }
 
 export default SearchPage
