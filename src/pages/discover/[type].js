@@ -1,4 +1,3 @@
-import Lottie from "react-lottie"
 import { LoadingAnimation } from "../../utils/LottieOptions"
 import { useMemo } from "react"
 import Head from "next/head"
@@ -10,6 +9,7 @@ import Pagination from "../../components/Discover/Pagination/Pagination"
 import { useSelector } from "react-redux"
 import { useSearchSlice } from "../../features/SearchSlice"
 import Page from "../../layouts/Page"
+import { useLottie } from "lottie-react"
 
 const Discover = ({ type }) => {
   const { page, filter } = useSelector(useSearchSlice)
@@ -18,6 +18,7 @@ const Discover = ({ type }) => {
     [type, filter, page]
   )
   const { data, isFetching, isLoading } = useGetDiscoverQuery(query)
+  const { View } = useLottie(LoadingAnimation)
 
   return (
     <section className="pt-20 max-w-screen-xl mx-auto">
@@ -32,7 +33,7 @@ const Discover = ({ type }) => {
       <List>
         {isLoading ?? isFetching ? (
           <div className="absolute top-20 inset-x-0 flex w-full self-end justify-center items-center">
-            <Lottie options={LoadingAnimation} width={200} height={200} />
+            {View}
           </div>
         ) : (
           data?.results.map(item => (

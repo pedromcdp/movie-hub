@@ -1,16 +1,17 @@
 import { useRef, useState } from "react"
-import Lottie from "react-lottie"
 import { LoadingAnimation } from "../../utils/LottieOptions"
 import RowHeader from "./RowHeader"
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 import RowItem from "./RowItem"
 import PropTypes from "prop-types"
+import { useLottie } from "lottie-react"
 
 function Row({ rowTitle, request }) {
   const scrollRef = useRef(null)
   const [showLeft, setShowLeft] = useState(false)
   const [showRight, setShowRight] = useState(true)
   const { data, isFetching, isLoading } = request
+  const { View } = useLottie(LoadingAnimation)
 
   const onScroll = () => {
     if (scrollRef.current.scrollLeft > 0) {
@@ -32,7 +33,7 @@ function Row({ rowTitle, request }) {
     return (
       <div className="w-screen h-auto flex-col px-6 md:px-14 pt-8 text-white">
         <h1 className="text-4xl">{rowTitle}</h1>
-        <Lottie options={LoadingAnimation} width={100} height={100} />
+        {View}
       </div>
     )
   }
