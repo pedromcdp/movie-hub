@@ -19,6 +19,7 @@ function RowItem({ movie, request }) {
               src={`https://image.tmdb.org/t/p/w300/${movie?.poster_path}`}
               alt={movie.name || movie.title}
               fill={true}
+              unoptimized
               style={{
                 objectFit: "cover",
                 objectPosition: "center",

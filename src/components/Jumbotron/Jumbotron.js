@@ -53,6 +53,7 @@ function Jumbotron() {
         src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
         alt={`${movie.title ?? movie.name} imagem de capa`}
         fill={true}
+        unoptimized
         style={{
           objectFit: "cover",
           objectPosition: "center",

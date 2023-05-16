@@ -31,6 +31,7 @@ function ListItem({ item, type }) {
                 sizes="(max-width: 640px) 100vw, 300px"
                 className="rounded-lg"
                 priority
+                unoptimized
               />
             ) : (
               <span className="px-2">{item.name || item.title}</span>

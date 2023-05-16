@@ -9,6 +9,7 @@ function ProfilePic() {
           fill={true}
           alt="foto de perfil"
           sizes="160px"
+          unoptimized
           priority
         />
       </div>

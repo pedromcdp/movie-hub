@@ -6,9 +6,6 @@ module.exports = withBundleAnalyzer({
   poweredByHeader: false,
   trailingSlash: true,
   basePath: "",
-  experimental: {
-    runtime: "experimental-edge",
-  },
   env: {
     REACT_APP_API_KEY: process.env.REACT_APP_API_KEY,
   },

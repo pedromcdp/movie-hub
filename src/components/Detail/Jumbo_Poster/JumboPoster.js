@@ -14,6 +14,7 @@ function Poster({ imgSource, title }) {
         sizes="300px"
         loading="lazy"
         className="rounded-lg shadow-md"
+        unoptimized
       />
     </div>
   )
