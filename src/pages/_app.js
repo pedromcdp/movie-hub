@@ -1,4 +1,5 @@
 import "../styles/globals.css"
+import "../../firebase"
 import { Provider } from "react-redux"
 import { store } from "../app/store"
 import { SearchHandler } from "../components/Search/SearchHandler"
