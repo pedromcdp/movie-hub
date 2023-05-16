@@ -18,6 +18,7 @@ module.exports = withBundleAnalyzer({
   },
   images: {
     domains: ["image.tmdb.org"],
+    unoptimized: true,
   },
   reactStrictMode: true,
 })
