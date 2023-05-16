@@ -39,6 +39,5 @@ export const {
   resetPageAndFilter,
   setFilter,
 } = SearchSlice.actions
-export const SelectedPage = state => state.search.page
-export const SelectedFilter = state => state.search.filter
+export const useSearchSlice = state => state.search
 export default SearchSlice.reducer

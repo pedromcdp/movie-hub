@@ -29,7 +29,10 @@ function Pagination({ page, totalPages }) {
         {page < totalPages && (
           <button
             aria-label="Ir para próxima página"
-            onClick={() => dispatch(setNextPage())}
+            onClick={() => {
+              dispatch(setNextPage())
+              window.scrollTo(0, 0, { behavior: "smooth" })
+            }}
             className="p-2 bg-gray-400 bg-opacity-40 rounded-lg md:w-44"
           >
             <span className=" hidden md:block font-medium tracking-wide">

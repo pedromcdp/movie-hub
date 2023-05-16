@@ -2,6 +2,7 @@ import Jumbotron from "../components/Jumbotron/Jumbotron"
 import Row from "../components/Row/Row"
 import { useGetTrendingTitlesQuery, useGetMovieQuery } from "../services/tmdb"
 import Page from "../layouts/Page"
+import { Fragment } from "react"
 
 function Home() {
   const rowItems = [
@@ -52,7 +53,7 @@ function Home() {
   ]
 
   return (
-    <>
+    <Fragment>
       <Jumbotron />
       {rowItems.map(RowItem => (
         <Row
@@ -61,7 +62,7 @@ function Home() {
           request={RowItem.request}
         />
       ))}
-    </>
+    </Fragment>
   )
 }
 

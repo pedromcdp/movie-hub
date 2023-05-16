@@ -1,14 +1,15 @@
 import Link from "next/link"
-import { RiSearch2Line } from "react-icons/ri"
-import { useOs } from "@mantine/hooks"
-import { setSearchState, useSearchState } from "../../features/NavBarSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { motion } from "framer-motion"
+import { useOs } from "@mantine/hooks"
+import { RiSearch2Line } from "react-icons/ri"
+import { setSearchState, useSearchState } from "../../features/NavBarSlice"
 
 function Center() {
   const os = useOs()
   const dispatch = useDispatch()
   const showSearch = useSelector(useSearchState)
+
   return (
     <div className="flex basis-2/4 justify-center">
       <motion.div

@@ -1,4 +1,5 @@
-import { useRouter } from "next/router"
+import { useMemo } from "react"
+import Head from "next/head"
 import Jumbotron from "../../components/Detail/Jumbotron/DetailJumbotron"
 import Overlay from "../../components/Overlay/Overlay"
 import Poster from "../../components/Detail/Jumbo_Poster/JumboPoster"
@@ -9,14 +10,13 @@ import Loading from "../../components/Loading/Loading"
 import Content from "../../components/Detail/Content/Content"
 import { Transition } from "@headlessui/react"
 import Page from "../../layouts/Page"
-import Head from "next/head"
 
-const Detail = () => {
-  const { content_type, id } = useRouter().query
-  const { data, isLoading, isFetching } = useGetMovieQuery({
-    type: content_type,
-    query: id,
-  })
+const Detail = ({ content_type, id }) => {
+  const query = useMemo(
+    () => ({ type: content_type, query: id }),
+    [content_type, id]
+  )
+  const { data, isLoading, isFetching } = useGetMovieQuery(query)
 
   if (isLoading || isFetching) {
     return <Loading />
@@ -25,23 +25,23 @@ const Detail = () => {
   return (
     <div className="bg-slate-850 min-h-[100vh] scroll-smooth">
       <Head>
-        <title>Movie HUB | {data?.title || data?.name}</title>
+        <title>Movie HUB | {data?.title ?? data?.name}</title>
       </Head>
       <Transition
         show={true}
         appear={true}
         enter="transition ease-in-out duration-500 transform"
-        enterFrom="-translate-y-full"
-        enterTo="translate-y-0"
+        enterFrom="scale-95 opacity-0"
+        enterTo="scale-100 opacity-100"
         leave="transition ease-in-out duration-500 transform"
-        leaveFrom="translate-y-0"
-        leaveTo="-translate-y-full"
+        leaveFrom="scale-100 opacity-100"
+        leaveTo="scale-95 opacity-0"
       >
         <Jumbotron
           imgSource={data.backdrop_path}
-          title={data?.title || data?.name}
+          title={data?.title ?? data?.name}
         >
-          <Overlay>
+          <Overlay page>
             <OverviewContainer>
               <Poster
                 imgSource={data?.poster_path}
@@ -78,3 +78,23 @@ Detail.getLayout = function getLayout(page) {
 }
 
 export default Detail
+
+export async function getServerSideProps(context) {
+  const { content_type, id } = context.query
+
+  if (content_type !== "movie" && content_type !== "tv") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      content_type,
+      id,
+    },
+  }
+}

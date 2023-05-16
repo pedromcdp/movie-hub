@@ -1,43 +1,46 @@
+import Lottie from "react-lottie"
+import { LoadingAnimation } from "../../utils/LottieOptions"
+import { useMemo } from "react"
+import Head from "next/head"
 import FilterSelector from "../../components/Discover/Filter_Row/FilterRow"
-import { useRouter } from "next/router"
 import { useGetDiscoverQuery } from "../../services/tmdb"
 import List from "../../components/Discover/List/List"
 import ListItem from "../../components/Discover/List_Item/ListItem"
 import Pagination from "../../components/Discover/Pagination/Pagination"
-import Loading from "../../components/Loading/Loading"
 import { useSelector } from "react-redux"
-import { SelectedPage, SelectedFilter } from "../../features/SearchSlice"
+import { useSearchSlice } from "../../features/SearchSlice"
 import Page from "../../layouts/Page"
-import Head from "next/head"
 
-const Discover = () => {
-  const {
-    query: { type },
-  } = useRouter()
-  const page = useSelector(SelectedPage)
-  const filter = useSelector(SelectedFilter)
-  const { data, isFetching, isLoading } = useGetDiscoverQuery({
-    type: type,
-    sort: filter.value,
-    page: page,
-  })
-
-  if (isLoading || isFetching) {
-    return <Loading />
-  }
+const Discover = ({ type }) => {
+  const { page, filter } = useSelector(useSearchSlice)
+  const query = useMemo(
+    () => ({ type, sort: filter.value, page }),
+    [type, filter, page]
+  )
+  const { data, isFetching, isLoading } = useGetDiscoverQuery(query)
 
   return (
-    <section className="min-h-screen pt-20 max-w-screen-xl mx-auto">
+    <section className="pt-20 max-w-screen-xl mx-auto">
       <Head>
-        <title>Movie HUB | {type === "movie" ? "Filmes" : "Séries"}</title>
+        {isLoading ?? isFetching ? (
+          <title>Movie HUB | Loading</title>
+        ) : (
+          <title>Movie HUB | {type === "movie" ? "Filmes" : "Séries"}</title>
+        )}
       </Head>
       <FilterSelector />
       <List>
-        {data?.results.map(item => (
-          <ListItem key={item.id} item={item} type={type} />
-        ))}
+        {isLoading ?? isFetching ? (
+          <div className="absolute top-20 inset-x-0 flex w-full self-end justify-center items-center">
+            <Lottie options={LoadingAnimation} width={200} height={200} />
+          </div>
+        ) : (
+          data?.results.map(item => (
+            <ListItem key={item.id} item={item} type={type} />
+          ))
+        )}
       </List>
-      <Pagination page={page} totalPages={data?.total_pages} />
+      {data && <Pagination page={page} totalPages={data?.total_pages} />}
     </section>
   )
 }
@@ -47,3 +50,22 @@ Discover.getLayout = function getLayout(page) {
 }
 
 export default Discover
+
+export async function getServerSideProps(context) {
+  const { type } = context.query
+
+  if (type !== "movie" && type !== "tv") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      type,
+    },
+  }
+}

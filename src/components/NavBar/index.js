@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import Left from "./left"
 import Center from "./center"
 import Right from "./right"
@@ -22,7 +23,16 @@ function NavBar() {
   }, [])
 
   return (
-    <nav
+    <motion.nav
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+      }}
+      transition={{
+        duration: 0.1,
+        ease: "easeIn",
+      }}
       className={
         "fixed w-screen transition duration-500 ease-in-out flex p-6 items-baseline justify-center text-white z-30 " +
         (showBarBg &&
@@ -33,7 +43,7 @@ function NavBar() {
       <Center />
       <Right />
       <MobileNav />
-    </nav>
+    </motion.nav>
   )
 }
 

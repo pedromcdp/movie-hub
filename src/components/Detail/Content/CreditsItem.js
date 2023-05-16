@@ -9,9 +9,12 @@ function CreditsItem({ person }) {
           <Image
             src={`https://image.tmdb.org/t/p/w300/${person?.profile_path}`}
             alt={person.name}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill={true}
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+            sizes="(max-width: 640px) 100vw, 300px"
             className="rounded-lg"
             priority
           />

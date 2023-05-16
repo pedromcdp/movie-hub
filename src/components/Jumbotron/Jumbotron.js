@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { useGetTrendingTitlesQuery } from "../../services/tmdb"
@@ -22,11 +23,7 @@ function Jumbotron() {
   useEffect(() => {
     const updateIndex = () => {
       setTimeout(() => {
-        if (currentIndex === 19) {
-          setCurrentIndex(0)
-        } else {
-          setCurrentIndex(currentIndex + 1)
-        }
+        setCurrentIndex(prevIndex => (prevIndex === 19 ? 0 : prevIndex + 1))
       }, 10000)
     }
     updateIndex()
@@ -36,56 +33,72 @@ function Jumbotron() {
     return <Loading />
   }
 
+  const movie = movieData?.results[currentIndex]
+
   return (
-    <section className="h-screen relative min-h-[680px]">
+    <motion.section
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 0.1,
+        ease: "easeIn",
+      }}
+      className="h-screen relative min-h-[680px]"
+    >
       <Image
-        src={`https://image.tmdb.org/t/p/original/${movieData?.results[currentIndex].backdrop_path}`}
-        alt={`${
-          movieData?.results[currentIndex].title ||
-          movieData?.results[currentIndex].name
-        } imagem de capa`}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+        alt={`${movie.title ?? movie.name} imagem de capa`}
+        fill={true}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+        sizes="(max-width: 640px) 100vw, 1920px"
         priority
       />
       <Overlay>
-        <div className="flex flex-col h-full justify-end pb-20 md:pb-10 px-6 md:px-14 text-white tracking-wide">
-          <h1 className="text-5xl font-medium">
-            {movieData?.results[currentIndex].title ||
-              movieData?.results[currentIndex].name}
-          </h1>
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeIn",
+            delay: 0.05,
+          }}
+          className="flex flex-col h-full justify-end pb-20 md:pb-10 px-6 md:px-14 text-white tracking-wide"
+        >
+          <h1 className="text-5xl font-medium">{movie.title ?? movie.name}</h1>
           <p className="text-xs">
             Título original: <span className="font-medium"></span>
             <span className="font-medium">
-              {movieData?.results[currentIndex].original_title ||
-                movieData?.results[currentIndex].original_name}
+              {movie.original_title ?? movie.original_name}
             </span>{" "}
             | Pontuação:{" "}
             <span className="font-medium">
-              {Math.round(movieData?.results[currentIndex].vote_average * 10) /
-                10}
+              {Math.round(movie.vote_average * 10) / 10}
             </span>
           </p>
           <p className="pt-2 text-clip overflow-hidden w-full md:w-2/4">
-            {movieData?.results[currentIndex].overview &&
-              `${movieData?.results[currentIndex].overview.substring(
-                0,
-                200
-              )}...`}
+            {movie.overview && `${movie.overview.substring(0, 200)}...`}
           </p>
           <Link
-            href={`/${movieData?.results[currentIndex].media_type}/${movieData?.results[currentIndex].id}`}
+            href={`/${movie.media_type}/${movie.id}`}
             passHref
-            className="bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded text-center"
+            className="flex items-start justify-center gap-1.5 bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded text-center"
             aria-label={`Mais informações sobre ${
-              movieData?.results[currentIndex].original_title ||
-              movieData?.results[currentIndex].original_name
+              movie.original_title ?? movie.original_name
             }`}
           >
             Mais detalhes
           </Link>
-          {/* MOUSE */}
           <div
             className={
               "hidden md:block border-2 border-white self-center w-5 h-8 rounded-xl animate-bounce mt-12 transition duration-500 ease-in-out " +
@@ -94,10 +107,9 @@ function Jumbotron() {
           >
             <div className="absolute bg-white left-1.5 rounded-full top-1.5 right-1.5 w-1 h-1"></div>
           </div>
-          {/* //////// */}
-        </div>
+        </motion.div>
       </Overlay>
-    </section>
+    </motion.section>
   )
 }
 

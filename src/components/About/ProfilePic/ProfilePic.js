@@ -2,12 +2,13 @@ import Image from "next/image"
 
 function ProfilePic() {
   return (
-    <div className="flex flex-col items-center">
+    <section className="flex flex-col items-center">
       <div className="w-40 h-40 bg-gradient-to-t from-slate-300 to-white shadow-xl rounded-full relative">
         <Image
           src="/assets/profile.png"
-          layout="fill"
+          fill={true}
           alt="foto de perfil"
+          sizes="160px"
           priority
         />
       </div>
@@ -15,7 +16,7 @@ function ProfilePic() {
         Pedro Miguel Pereira
       </p>
       <p className=" text-white font-light tracking-wide">@pedromcdp</p>
-    </div>
+    </section>
   )
 }
 

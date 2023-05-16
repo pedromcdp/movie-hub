@@ -18,9 +18,12 @@ function RowItem({ movie, request }) {
             <Image
               src={`https://image.tmdb.org/t/p/w300/${movie?.poster_path}`}
               alt={movie.name || movie.title}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
+              fill={true}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              sizes={"(max-width: 640px) 100vw, 300px"}
               className="rounded-lg"
               priority
             />
@@ -28,9 +31,9 @@ function RowItem({ movie, request }) {
             <span className="px-2">{movie.name || movie.title}</span>
           )}
         </div>
-        <p className="text-white tracking-wide w-full text-center leading-4">
+        <h2 className="text-white tracking-wide w-full text-center leading-4">
           {movie?.title || movie?.name}
-        </p>
+        </h2>
       </div>
     </Link>
   )
