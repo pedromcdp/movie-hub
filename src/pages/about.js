@@ -1,9 +1,15 @@
+import { motion } from "framer-motion"
 import ProfilePic from "../components/About/ProfilePic/ProfilePic"
 import Page from "../layouts/Page"
 
 function About() {
   return (
-    <section className="min-h-[94.3vh] pt-20 bg-slate-850 flex flex-col items-center space-y-4">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-[94.3vh] pt-20 bg-slate-850 flex flex-col items-center space-y-4"
+    >
       <ProfilePic />
       <div className="text-white max-w-screen-xl px-6 tracking-wide">
         <h1 className="text-2xl font-medium">Sobre:</h1>
@@ -18,7 +24,7 @@ function About() {
           plataforma que permite explorar todos os filmes e séries do mundo 🌎!
         </p>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
