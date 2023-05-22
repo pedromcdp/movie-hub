@@ -10,8 +10,10 @@ import Loading from "../../components/Loading/Loading"
 import Content from "../../components/Detail/Content/Content"
 import { Transition } from "@headlessui/react"
 import Page from "../../layouts/Page"
+import { useRouter } from "next/router"
 
 const Detail = ({ content_type, id }) => {
+  const { replace } = useRouter()
   const query = useMemo(
     () => ({ type: content_type, query: id }),
     [content_type, id]
@@ -20,6 +22,11 @@ const Detail = ({ content_type, id }) => {
 
   if (isLoading || isFetching) {
     return <Loading />
+  }
+
+  if (!data) {
+    replace("/")
+    return null
   }
 
   return (
@@ -79,10 +86,17 @@ Detail.getLayout = function getLayout(page) {
 
 export default Detail
 
-export async function getServerSideProps(context) {
-  const { content_type, id } = context.query
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  }
+}
 
-  if (content_type !== "movie" && content_type !== "tv") {
+export async function getStaticProps(context) {
+  const { content_type, id } = context.params
+
+  if (content_type !== "movie" && content_type !== "tv" && id === undefined) {
     return {
       redirect: {
         destination: "/",
@@ -92,9 +106,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {
-      content_type,
-      id,
-    },
+    props: { content_type, id },
   }
 }

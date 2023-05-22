@@ -8,19 +8,26 @@ import Pagination from "../components/Discover/Pagination/Pagination"
 import { useSelector } from "react-redux"
 import { useSearchSlice } from "../features/SearchSlice"
 import Page from "../layouts/Page"
+import { useRouter } from "next/router"
 
 function SearchPage({ q }) {
+  const { replace } = useRouter()
   const { page } = useSelector(useSearchSlice)
   const [searchTearm, setSearchTerm] = useState(q)
   const { data } = useGetSearchTermQuery({
     categorie: "multi",
-    searchTerm: q,
+    searchTerm: searchTearm,
     page: page,
   })
 
   useEffect(() => {
-    setSearchTerm(q)
-  }, [q])
+    if (q) {
+      setSearchTerm(q)
+    } else {
+      setSearchTerm("")
+      replace("/")
+    }
+  }, [q, replace])
 
   return (
     <motion.section
@@ -63,21 +70,11 @@ SearchPage.getLayout = function getLayout(page) {
 
 export default SearchPage
 
-export async function getServerSideProps(context) {
-  const { q } = context.query
+SearchPage.getInitialProps = async ({ query }) => {
+  const { q } = query
 
-  if (q === "" || q === undefined) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    }
+  if (!q) {
+    return {}
   }
-
-  return {
-    props: {
-      q,
-    },
-  }
+  return { q }
 }

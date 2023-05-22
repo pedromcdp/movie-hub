@@ -52,8 +52,15 @@ Discover.getLayout = function getLayout(page) {
 
 export default Discover
 
-export async function getServerSideProps(context) {
-  const { type } = context.query
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  }
+}
+
+export async function getStaticProps(context) {
+  const { type } = context.params
 
   if (type !== "movie" && type !== "tv") {
     return {
@@ -65,8 +72,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {
-      type,
-    },
+    props: { type },
   }
 }
