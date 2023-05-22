@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postinstall": "next-sitemap --config ./next-sitemap.js",
     "start": "next start",
     "export": "next export",
     "lint": "npx eslint *.js --fix",
@@ -20,6 +21,7 @@
     "lottie-react": "^2.4.0",
     "next": "13.4.1",
     "next-seo": "^6.0.0",
+    "next-sitemap": "^4.0.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
