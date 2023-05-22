@@ -92,7 +92,6 @@ function Jumbotron() {
           </p>
           <Link
             href={`/${movie.media_type}/${movie.id}`}
-            passHref
             className="flex items-start justify-center gap-1.5 bg-white text-opacity-100 px-3 pt-3 pb-2.5 mt-2 w-48 text-black rounded text-center"
             aria-label={`Mais informações sobre ${
               movie.original_title ?? movie.original_name
