@@ -12,7 +12,7 @@ export const TMDB_API = createApi({
     }),
     getMovie: builder.query({
       query: ({ type, query }) =>
-        `${type}/${query}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=1&append_to_response=videos`,
+        `${type}/${query}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=1`,
     }),
     getSearchTerm: builder.query({
       query: ({ categorie, searchTerm, page }) =>
