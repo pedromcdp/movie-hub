@@ -1,13 +1,12 @@
 import { Fragment, useState, useEffect } from "react"
 import { useGetSearchTermQuery } from "../services/tmdb"
 import { motion } from "framer-motion"
-import List from "../components/Discover/List/List"
 import ListItem from "../components/Discover/List_Item/ListItem"
 import { RiErrorWarningLine } from "react-icons/ri"
 import Pagination from "../components/Discover/Pagination/Pagination"
 import { useSelector } from "react-redux"
 import { useSearchSlice } from "../features/SearchSlice"
-import Page from "../layouts/Page"
+import { Page } from "../layouts"
 import { useRouter } from "next/router"
 
 function SearchPage({ q }) {
@@ -52,11 +51,11 @@ function SearchPage({ q }) {
         </div>
       ) : (
         <Fragment>
-          <List>
+          <ul className="list">
             {data?.results.map(item => (
               <ListItem key={item.id} item={item} />
             ))}
-          </List>
+          </ul>
           <Pagination page={page} totalPages={data?.total_pages} />
         </Fragment>
       )}

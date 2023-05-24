@@ -6,7 +6,7 @@ function Overlay({ children, page }) {
       className={`absolute inset-0 ${
         page
           ? "bg-gradient-to-t from-slate-850 from-4%"
-          : "bg-jumbo-overlay bg-cover bg-no-repeat bg-center"
+          : "bg-jumbo-overlay bg-no-repeat bg-cover bg-center"
       }`}
     >
       {children}

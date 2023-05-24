@@ -1,12 +1,12 @@
 import { useCallback, useMemo, Fragment } from "react"
 import { Listbox, Transition } from "@headlessui/react"
-import { SortFilters } from "../../../utils/SortFilters"
+import { SortFilters } from "../../utils/SortFilters"
 import { FiChevronDown } from "react-icons/fi"
 import { useSelector, useDispatch } from "react-redux"
-import { setFilter, useSearchSlice } from "../../../features/SearchSlice"
+import { setFilter, useSearchSlice } from "../../features/SearchSlice"
 import { useRouter } from "next/router"
 
-function FilterSelector() {
+function FilterRow() {
   const dispatch = useDispatch()
   const { filter } = useSelector(useSearchSlice)
 
@@ -77,4 +77,4 @@ function FilterSelector() {
   )
 }
 
-export default FilterSelector
+export { FilterRow }

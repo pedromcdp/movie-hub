@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 function OverviewDetail({ content_title, genres, release_date }) {
   return (
     <section className="text-white mx-2 md:self-end tracking-wide antialiased flex flex-col items-center md:items-start justify-center md:justify-end max-w-sm w-max">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium">
         {content_title}
-      </h2>
+      </h1>
       <ul className="flex flex-wrap justify-center md:justify-start text-md gap-1.5 transition-transform ease-in-out duration-150">
         {genres?.map(genre => (
           <li
@@ -30,7 +30,7 @@ function OverviewDetail({ content_title, genres, release_date }) {
   )
 }
 
-export default OverviewDetail
+export { OverviewDetail }
 
 OverviewDetail.propTypes = {
   content_title: PropTypes.string.isRequired,

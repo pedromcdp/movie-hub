@@ -1,16 +1,18 @@
 import { useMemo } from "react"
 import Head from "next/head"
-import Jumbotron from "../../components/Detail/Jumbotron/DetailJumbotron"
 import Overlay from "../../components/Overlay/Overlay"
-import Poster from "../../components/Detail/Jumbo_Poster/JumboPoster"
 import { useGetMovieQuery } from "../../services/tmdb"
-import OverviewContainer from "../../components/Detail/Overview/OverviewContainer"
-import OverviewDetail from "../../components/Detail/Overview_Detail/OverviewDetail"
+import {
+  OverviewDetail,
+  OverviewContainer,
+  Poster,
+  DetailJumbotron as Jumbotron,
+  Content,
+} from "../../components/Detail"
 import Loading from "../../components/Loading/Loading"
-import Content from "../../components/Detail/Content/Content"
-import { Transition } from "@headlessui/react"
-import Page from "../../layouts/Page"
+import { Page } from "../../layouts"
 import { useRouter } from "next/router"
+import { Transition } from "@headlessui/react"
 
 const Detail = ({ content_type, id }) => {
   const { replace } = useRouter()
@@ -30,7 +32,7 @@ const Detail = ({ content_type, id }) => {
   }
 
   return (
-    <div className="bg-slate-850 min-h-[100vh] scroll-smooth">
+    <article className="scroll-smooth">
       <Head>
         <title>Movie HUB | {data?.title ?? data?.name}</title>
       </Head>
@@ -40,9 +42,7 @@ const Detail = ({ content_type, id }) => {
         enter="transition ease-in-out duration-500 transform"
         enterFrom="scale-95 opacity-0"
         enterTo="scale-100 opacity-100"
-        leave="transition ease-in-out duration-500 transform"
-        leaveFrom="scale-100 opacity-100"
-        leaveTo="scale-95 opacity-0"
+        as="section"
       >
         <Jumbotron
           imgSource={data.backdrop_path}
@@ -70,13 +70,11 @@ const Detail = ({ content_type, id }) => {
         enter="transition ease-in-out duration-500 transform"
         enterFrom="translate-y-full"
         enterTo="translate-y-0"
-        leave="transition ease-in-out duration-500 transform"
-        leaveFrom="translate-y-0"
-        leaveTo="translate-y-full"
+        as="section"
       >
         <Content data={data} id={id} type={content_type} />
       </Transition>
-    </div>
+    </article>
   )
 }
 

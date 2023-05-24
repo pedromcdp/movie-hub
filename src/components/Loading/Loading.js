@@ -1,6 +1,6 @@
 import { LoadingAnimation } from "../../utils/LottieOptions"
 import { Main } from "../../template/Main"
-import { Meta } from "../../layouts/Meta"
+import { Meta } from "../../layouts"
 import { useLottie } from "lottie-react"
 
 function Loading() {

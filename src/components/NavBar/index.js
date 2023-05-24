@@ -23,7 +23,7 @@ function NavBar() {
   }, [])
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{
         opacity: 1,
@@ -43,7 +43,7 @@ function NavBar() {
       <Center />
       <Right />
       <MobileNav />
-    </motion.nav>
+    </motion.header>
   )
 }
 

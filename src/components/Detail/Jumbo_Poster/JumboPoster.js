@@ -20,7 +20,7 @@ function Poster({ imgSource, title }) {
   )
 }
 
-export default Poster
+export { Poster }
 
 Poster.propTypes = {
   title: PropTypes.string,

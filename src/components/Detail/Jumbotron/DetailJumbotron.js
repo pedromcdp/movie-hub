@@ -24,7 +24,7 @@ function DetailJumbotron({ children, imgSource, title }) {
   )
 }
 
-export default DetailJumbotron
+export { DetailJumbotron }
 
 DetailJumbotron.propTypes = {
   children: PropTypes.node.isRequired,

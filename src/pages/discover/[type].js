@@ -1,14 +1,13 @@
 import { LoadingAnimation } from "../../utils/LottieOptions"
 import { useMemo } from "react"
 import Head from "next/head"
-import FilterSelector from "../../components/Discover/Filter_Row/FilterRow"
+import { FilterRow } from "../../components/Discover"
 import { useGetDiscoverQuery } from "../../services/tmdb"
-import List from "../../components/Discover/List/List"
 import ListItem from "../../components/Discover/List_Item/ListItem"
 import Pagination from "../../components/Discover/Pagination/Pagination"
 import { useSelector } from "react-redux"
 import { useSearchSlice } from "../../features/SearchSlice"
-import Page from "../../layouts/Page"
+import { Page } from "../../layouts"
 import { useLottie } from "lottie-react"
 
 const Discover = ({ type }) => {
@@ -29,8 +28,8 @@ const Discover = ({ type }) => {
           <title>Movie HUB | {type === "movie" ? "Filmes" : "Séries"}</title>
         )}
       </Head>
-      <FilterSelector />
-      <List>
+      <FilterRow />
+      <ul id="discover-list" className="list">
         {isLoading ?? isFetching ? (
           <div className="absolute top-20 inset-x-0 flex w-full self-end justify-center items-center">
             {View}
@@ -40,7 +39,7 @@ const Discover = ({ type }) => {
             <ListItem key={item.id} item={item} type={type} />
           ))
         )}
-      </List>
+      </ul>
       {data && <Pagination page={page} totalPages={data?.total_pages} />}
     </section>
   )

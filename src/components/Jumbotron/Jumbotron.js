@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { useGetTrendingTitlesQuery } from "../../services/tmdb"
 import Overlay from "../Overlay/Overlay"
 import Loading from "../Loading/Loading"
 import { useHideMouse } from "../../hooks/useHideMouse"
+import { Transition } from "@headlessui/react"
 
 function Jumbotron() {
   const {
@@ -36,17 +36,13 @@ function Jumbotron() {
   const movie = movieData?.results[currentIndex]
 
   return (
-    <motion.section
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 0.1,
-        ease: "easeIn",
-      }}
+    <Transition
+      show={true}
+      appear={true}
+      enter="transition ease-in duration-200 transform"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      as="section"
       className="h-screen relative min-h-[680px]"
     >
       <Image
@@ -62,18 +58,12 @@ function Jumbotron() {
         priority
       />
       <Overlay>
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 0.3,
-            ease: "easeIn",
-            delay: 0.05,
-          }}
+        <Transition
+          show={true}
+          appear={true}
+          enter="transition ease-in duration-100 transform"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
           className="flex flex-col h-full justify-end pb-20 md:pb-10 px-6 md:px-14 text-white tracking-wide"
         >
           <h1 className="text-5xl font-medium">{movie.title ?? movie.name}</h1>
@@ -107,9 +97,9 @@ function Jumbotron() {
           >
             <div className="absolute bg-white left-1.5 rounded-full top-1.5 right-1.5 w-1 h-1"></div>
           </div>
-        </motion.div>
+        </Transition>
       </Overlay>
-    </motion.section>
+    </Transition>
   )
 }
 

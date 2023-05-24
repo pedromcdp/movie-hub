@@ -1,7 +1,7 @@
 import Jumbotron from "../components/Jumbotron/Jumbotron"
 import Row from "../components/Row/Row"
 import { useGetTrendingTitlesQuery, useGetMovieQuery } from "../services/tmdb"
-import Page from "../layouts/Page"
+import { Page } from "../layouts"
 import { Fragment } from "react"
 
 function Home() {
