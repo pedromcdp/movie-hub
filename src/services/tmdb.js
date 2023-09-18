@@ -8,7 +8,7 @@ export const TMDB_API = createApi({
   endpoints: builder => ({
     getTrendingTitles: builder.query({
       query: ({ type, time_window, page }) =>
-        `trending/${type}/${time_window}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=${page}`,
+        `trending/${type}/${time_window}?api_key=${process.env.REACT_APP_API_KEY}&language=pt-pt&page=${page}&append_to_response=videos`,
     }),
     getMovie: builder.query({
       query: ({ type, query }) =>

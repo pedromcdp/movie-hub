@@ -21,9 +21,10 @@ function MobileNav() {
           <Link href="/discover/movie" passHref={true}>
             <li
               className="cursor-pointer"
-              onClick={() =>
-                dispatch(setMobileNavState(), resetPageAndFilter())
-              }
+              onClick={() => {
+                dispatch(setMobileNavState())
+                dispatch(resetPageAndFilter())
+              }}
             >
               Filmes
             </li>
@@ -31,9 +32,10 @@ function MobileNav() {
           <Link href="/discover/tv" passHref={true}>
             <li
               className="cursor-pointer"
-              onClick={() =>
-                dispatch(setMobileNavState(), resetPageAndFilter())
-              }
+              onClick={() => {
+                dispatch(setMobileNavState())
+                dispatch(resetPageAndFilter())
+              }}
             >
               Séries
             </li>
@@ -41,9 +43,10 @@ function MobileNav() {
           <Link href="/about" passHref={true}>
             <li
               className="cursor-pointer"
-              onClick={() =>
-                dispatch(setMobileNavState(), resetPageAndFilter())
-              }
+              onClick={() => {
+                dispatch(setMobileNavState())
+                dispatch(resetPageAndFilter())
+              }}
             >
               Sobre
             </li>

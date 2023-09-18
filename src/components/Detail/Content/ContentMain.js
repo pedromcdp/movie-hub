@@ -21,8 +21,8 @@ function ContentMain({ general_data, cast_data }) {
       </article>
       {cast_data?.cast.length > 0 && (
         <CreditsRow rowTitle="Elenco">
-          {cast_data?.cast.map(person => (
-            <CreditsItem key={`Cast ${person.id}`} person={person} />
+          {cast_data?.cast.map((person, index) => (
+            <CreditsItem key={`Cast ${(person.id, index)}`} person={person} />
           ))}
         </CreditsRow>
       )}

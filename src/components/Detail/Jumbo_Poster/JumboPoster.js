@@ -7,16 +7,20 @@ function Poster({ imgSource, title }) {
       <Image
         src={`https://image.tmdb.org/t/p/w300/${imgSource}`}
         alt={`Imagem de capa de ${title}`}
-        layout="fill"
-        objectFit="cover"
+        fill={true}
+        style={{
+          objectFit: "cover",
+        }}
+        sizes="300px"
         loading="lazy"
-        className="rounded-lg"
+        className="rounded-lg shadow-md"
+        unoptimized
       />
     </div>
   )
 }
 
-export default Poster
+export { Poster }
 
 Poster.propTypes = {
   title: PropTypes.string,

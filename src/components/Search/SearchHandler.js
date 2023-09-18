@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Search from "./"
 import { useSearchState, setSearchState } from "../../features/NavBarSlice"
@@ -33,10 +33,10 @@ export function SearchHandler({ children }) {
   })
 
   return (
-    <>
+    <Fragment>
       <AnimatePresence>{showSearch && <Search />}</AnimatePresence>
       {children}
-    </>
+    </Fragment>
   )
 }
 

@@ -3,6 +3,9 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {
@@ -11,7 +14,7 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "jumbo-overlay": "url('/assets/overlay.png')",
+        "jumbo-overlay": "url('/assets/jumbo_overlay.svg')",
       },
       fontFamily: {
         sans: ["Calibre", "sans-serif"],

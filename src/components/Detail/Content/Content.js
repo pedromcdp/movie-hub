@@ -15,7 +15,7 @@ function Content({ data: general_data, id, type }) {
   )
 }
 
-export default Content
+export { Content }
 
 Content.propTypes = {
   data: PropTypes.object,
